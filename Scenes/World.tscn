@@ -3,9 +3,54 @@
 [ext_resource type="Texture2D" uid="uid://c1awgoosr5lls" path="res://PNG/Orange/texture_10.png" id="2_p70al"]
 [ext_resource type="Texture2D" uid="uid://bxrhr8oic47qc" path="res://PNG/Purple/texture_10.png" id="3_45d1s"]
 [ext_resource type="PackedScene" uid="uid://by1c53yb2eg5r" path="res://Scenes/Player.tscn" id="4_gjpho"]
-[ext_resource type="Script" uid="uid://bb08ajf1fj7as" path="res://Scripts/demon_realm.gd" id="4_p70al"]
-[ext_resource type="Script" uid="uid://b36k8hxfcodrm" path="res://Scripts/world.gd" id="5_p70al"]
-[ext_resource type="Script" uid="uid://cdnjsv4k84fom" path="res://Scripts/world_area.gd" id="6_45d1s"]
+
+[sub_resource type="GDScript" id="GDScript_5nsto"]
+script/source = "extends Node3D
+
+signal hero_count_update
+
+var heroes : Array
+var demon : CharacterBody3D
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_node_3d_2_advance_world() -> void:	
+	for hero in heroes:
+		hero.decide()
+		
+	var demon_alive : int
+	if demon != null:
+		demon.fight()
+		demon_alive = 1
+	else:
+		demon_alive = 0
+		
+	hero_count_update.emit( heroes.size(), demon_alive)
+	
+	print(\"AFTER UPDATE\")
+	if demon != null:
+		print(demon)
+		print(\"health : %s\" % demon.health)
+	for hero in heroes:
+		print(hero)
+		print(\"health : %s ; level : %s\" % [hero.health, hero.level])
+		print(\"attack : %s ; defence : %s\" % [hero.stats.attack, hero.stats.defense])
+		print(\"cowardly : %s ; lazy : %s ; curious : %s\" % [hero.traits.cowardly, hero.traits.lazy, hero.traits.curious])
+	print(\"\")
+	print(\"#########################################################################################\")
+		
+func _on_world_update_world_on_npcs(tdemon, theroes) -> void:
+	demon = tdemon
+	heroes = theroes
+"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q2d71"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -26,14 +71,8 @@ albedo_texture = ExtResource("2_p70al")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_op4cu"]
 albedo_texture = ExtResource("3_45d1s")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5nsto"]
-size = Vector3(17, 3, 16)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_45d1s"]
-size = Vector3(19, 5, 35)
-
 [node name="World" type="Node3D" unique_id=1511184333]
-script = ExtResource("5_p70al")
+script = SubResource("GDScript_5nsto")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=36298527]
 environment = SubResource("Environment_kn06e")
@@ -57,23 +96,4 @@ material = SubResource("StandardMaterial3D_op4cu")
 [node name="Node3D2" parent="." unique_id=1023616631 instance=ExtResource("4_gjpho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="DemonRealm" type="Area3D" parent="." unique_id=1100261300]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
-script = ExtResource("4_p70al")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DemonRealm" unique_id=525158947]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.5)
-shape = SubResource("BoxShape3D_5nsto")
-
-[node name="WorldArea" type="Area3D" parent="." unique_id=1533468894]
-script = ExtResource("6_45d1s")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldArea" unique_id=1571329582]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_45d1s")
-
 [connection signal="hero_count_update" from="." to="Node3D2" method="_on_node_3d_hero_count_update"]
-[connection signal="advance_world" from="Node3D2" to="." method="_on_node_3d_2_advance_world"]
-[connection signal="body_entered" from="DemonRealm" to="DemonRealm" method="_on_body_entered"]
-[connection signal="body_exited" from="DemonRealm" to="DemonRealm" method="_on_body_exited"]
-[connection signal="update_world_on_npcs" from="WorldArea" to="." method="_on_world_update_world_on_npcs"]

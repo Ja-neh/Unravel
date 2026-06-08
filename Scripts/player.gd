@@ -1,13 +1,5 @@
 extends CharacterBody3D
 
-signal advance_world
-
-var human = preload("res://Scenes/human.tscn")
-var hero = preload("res://Scenes/hero.tscn")
-var demon = preload("res://Scenes/demon.tscn")
-var heroes = 0
-var demons = 0
-
 const SPEED := 5.0
 const JUMP_VELOCITY := 10.0
 
@@ -73,16 +65,7 @@ func _physics_process(delta: float) -> void:
 	
 	
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("spawn_hero"):
-		if heroes < 5:
-			spawn_hero()
-			
-	if Input.is_action_just_pressed("spawn_demon"):
-		if demons < 1:
-			spawn_demon()
-			
-	if Input.is_action_just_pressed("advance"):
-		advance_world.emit()
+	pass
 	
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -100,36 +83,3 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 			
 			
-func spawn_hero() -> void:
-	heroes = heroes + 1
-	var hero_instance = hero.instantiate()
-	var mesh_instance = hero_instance.get_node("MeshInstance3D")
-	var material = mesh_instance.get_surface_override_material(0)
-
-	if material == null:
-		material = StandardMaterial3D.new()
-		mesh_instance.material_override = material
-	material.albedo_color = Color( randf_range(0, 0.75), randf_range(0, 1), randf_range(0, 1) )
-	
-	hero_instance.position = Vector3( randf_range(-7, 7), 2, randf_range(-15, -1))
-	get_tree().root.add_child(hero_instance)
-	
-	
-func spawn_demon() -> void:
-	demons = demons + 1
-	var demon_instance = demon.instantiate()
-	var mesh_instance = demon_instance.get_node("MeshInstance3D")
-	var material = mesh_instance.get_surface_override_material(0)
-
-	if material == null:
-		material = StandardMaterial3D.new()
-		mesh_instance.material_override = material
-	material.albedo_color = Color( 1, 0, 0)
-	
-	demon_instance.position = Vector3( randf_range(-7, 7), 2, randf_range(15, 1))
-	get_tree().root.add_child(demon_instance)
-
-
-func _on_node_3d_hero_count_update(theroes, tdemon) -> void:
-	heroes = theroes
-	demons = tdemon
