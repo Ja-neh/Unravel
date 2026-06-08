@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://cxp1i51clxbbq"]
+
+[ext_resource type="Texture2D" uid="uid://c1awgoosr5lls" path="res://PNG/Orange/texture_10.png" id="2_p70al"]
+[ext_resource type="Texture2D" uid="uid://bxrhr8oic47qc" path="res://PNG/Purple/texture_10.png" id="3_45d1s"]
+[ext_resource type="PackedScene" uid="uid://by1c53yb2eg5r" path="res://Scenes/Player.tscn" id="4_gjpho"]
+[ext_resource type="Script" uid="uid://bb08ajf1fj7as" path="res://Scripts/demon_realm.gd" id="4_p70al"]
+[ext_resource type="Script" uid="uid://b36k8hxfcodrm" path="res://Scripts/world.gd" id="5_p70al"]
+[ext_resource type="Script" uid="uid://cdnjsv4k84fom" path="res://Scripts/world_area.gd" id="6_45d1s"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q2d71"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_uo7di"]
+sky_material = SubResource("ProceduralSkyMaterial_q2d71")
+
+[sub_resource type="Environment" id="Environment_kn06e"]
+background_mode = 2
+sky = SubResource("Sky_uo7di")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ti1bm"]
+albedo_texture = ExtResource("2_p70al")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_op4cu"]
+albedo_texture = ExtResource("3_45d1s")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5nsto"]
+size = Vector3(17, 3, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_45d1s"]
+size = Vector3(19, 5, 35)
+
+[node name="World" type="Node3D" unique_id=1511184333]
+script = ExtResource("5_p70al")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=36298527]
+environment = SubResource("Environment_kn06e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=928435280]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 127, 0)
+shadow_enabled = true
+
+[node name="Desert" type="CSGBox3D" parent="." unique_id=2118615767]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+use_collision = true
+size = Vector3(16, 1, 16)
+material = SubResource("StandardMaterial3D_ti1bm")
+
+[node name="Minerals" type="CSGBox3D" parent="." unique_id=1225321516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+use_collision = true
+size = Vector3(16, 1, 16)
+material = SubResource("StandardMaterial3D_op4cu")
+
+[node name="Node3D2" parent="." unique_id=1023616631 instance=ExtResource("4_gjpho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="DemonRealm" type="Area3D" parent="." unique_id=1100261300]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+script = ExtResource("4_p70al")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DemonRealm" unique_id=525158947]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.5)
+shape = SubResource("BoxShape3D_5nsto")
+
+[node name="WorldArea" type="Area3D" parent="." unique_id=1533468894]
+script = ExtResource("6_45d1s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldArea" unique_id=1571329582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_45d1s")
+
+[connection signal="hero_count_update" from="." to="Node3D2" method="_on_node_3d_hero_count_update"]
+[connection signal="advance_world" from="Node3D2" to="." method="_on_node_3d_2_advance_world"]
+[connection signal="body_entered" from="DemonRealm" to="DemonRealm" method="_on_body_entered"]
+[connection signal="body_exited" from="DemonRealm" to="DemonRealm" method="_on_body_exited"]
+[connection signal="update_world_on_npcs" from="WorldArea" to="." method="_on_world_update_world_on_npcs"]
