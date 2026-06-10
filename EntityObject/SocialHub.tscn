@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cjotxw4apxt8x"]
+
+[ext_resource type="PackedScene" uid="uid://cyoitue5wr7bh" path="res://ComponentsEnitityObject/ComponentNeedFulfiller.tscn" id="1_ob0p8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ovees"]
+albedo_color = Color(1, 1, 0.30588236, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3oewr"]
+
+[node name="SocialHub" type="Node3D" unique_id=217565165]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2045479644]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ovees")
+mesh = SubResource("BoxMesh_3oewr")
+
+[node name="ComponentNeedFulfiller" parent="." unique_id=1693086378 instance=ExtResource("1_ob0p8")]
+_fulfilled_needs = {
+"social": 80
+}

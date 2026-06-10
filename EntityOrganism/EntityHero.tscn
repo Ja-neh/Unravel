@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://d2sjpdxsuihja"]
+
+[ext_resource type="Script" uid="uid://nw3auqcgnavi" path="res://EntityOrganism/Scripts/entity_hero.gd" id="1_ueewo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypo35"]
+albedo_color = Color(0.2627451, 0.4745098, 0.8980392, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2xeht"]
+
+[node name="EntityHero" type="Node3D" unique_id=398184550]
+script = ExtResource("1_ueewo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1838712666]
+material_override = SubResource("StandardMaterial3D_ypo35")
+mesh = SubResource("CapsuleMesh_2xeht")

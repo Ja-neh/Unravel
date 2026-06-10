@@ -1,56 +1,12 @@
 [gd_scene format=3 uid="uid://cxp1i51clxbbq"]
 
+[ext_resource type="Script" uid="uid://db511qcgvtkh3" path="res://Scripts/world.gd" id="1_y7y61"]
 [ext_resource type="Texture2D" uid="uid://c1awgoosr5lls" path="res://PNG/Orange/texture_10.png" id="2_p70al"]
-[ext_resource type="Texture2D" uid="uid://bxrhr8oic47qc" path="res://PNG/Purple/texture_10.png" id="3_45d1s"]
+[ext_resource type="PackedScene" uid="uid://chjv0bk37ipd4" path="res://EntityObject/House.tscn" id="3_45d1s"]
 [ext_resource type="PackedScene" uid="uid://by1c53yb2eg5r" path="res://Scenes/Player.tscn" id="4_gjpho"]
-
-[sub_resource type="GDScript" id="GDScript_5nsto"]
-script/source = "extends Node3D
-
-signal hero_count_update
-
-var heroes : Array
-var demon : CharacterBody3D
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func _on_node_3d_2_advance_world() -> void:	
-	for hero in heroes:
-		hero.decide()
-		
-	var demon_alive : int
-	if demon != null:
-		demon.fight()
-		demon_alive = 1
-	else:
-		demon_alive = 0
-		
-	hero_count_update.emit( heroes.size(), demon_alive)
-	
-	print(\"AFTER UPDATE\")
-	if demon != null:
-		print(demon)
-		print(\"health : %s\" % demon.health)
-	for hero in heroes:
-		print(hero)
-		print(\"health : %s ; level : %s\" % [hero.health, hero.level])
-		print(\"attack : %s ; defence : %s\" % [hero.stats.attack, hero.stats.defense])
-		print(\"cowardly : %s ; lazy : %s ; curious : %s\" % [hero.traits.cowardly, hero.traits.lazy, hero.traits.curious])
-	print(\"\")
-	print(\"#########################################################################################\")
-		
-func _on_world_update_world_on_npcs(tdemon, theroes) -> void:
-	demon = tdemon
-	heroes = theroes
-"
+[ext_resource type="PackedScene" uid="uid://ci116i31553dh" path="res://EntityObject/Saloon.tscn" id="4_y7y61"]
+[ext_resource type="PackedScene" uid="uid://bjccdh4aav08b" path="res://EntityObject/Tavern.tscn" id="5_q2d71"]
+[ext_resource type="PackedScene" uid="uid://cjotxw4apxt8x" path="res://EntityObject/SocialHub.tscn" id="6_uo7di"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q2d71"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -68,11 +24,8 @@ glow_enabled = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ti1bm"]
 albedo_texture = ExtResource("2_p70al")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_op4cu"]
-albedo_texture = ExtResource("3_45d1s")
-
 [node name="World" type="Node3D" unique_id=1511184333]
-script = SubResource("GDScript_5nsto")
+script = ExtResource("1_y7y61")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=36298527]
 environment = SubResource("Environment_kn06e")
@@ -82,18 +35,22 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="Desert" type="CSGBox3D" parent="." unique_id=2118615767]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0, 0)
 use_collision = true
-size = Vector3(16, 1, 16)
+size = Vector3(16, 1, 32)
 material = SubResource("StandardMaterial3D_ti1bm")
-
-[node name="Minerals" type="CSGBox3D" parent="." unique_id=1225321516]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
-use_collision = true
-size = Vector3(16, 1, 16)
-material = SubResource("StandardMaterial3D_op4cu")
 
 [node name="Node3D2" parent="." unique_id=1023616631 instance=ExtResource("4_gjpho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[connection signal="hero_count_update" from="." to="Node3D2" method="_on_node_3d_hero_count_update"]
+[node name="House" parent="." unique_id=1373769726 instance=ExtResource("3_45d1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, -13)
+
+[node name="Saloon" parent="." unique_id=326167469 instance=ExtResource("4_y7y61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, 12)
+
+[node name="Tavern" parent="." unique_id=999872177 instance=ExtResource("5_q2d71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1, -12)
+
+[node name="SocialHub" parent="." unique_id=217565165 instance=ExtResource("6_uo7di")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, 11)

@@ -15,6 +15,11 @@ run/main_scene="uid://cxp1i51clxbbq"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ManagerGame="*uid://dv3nrls1qhuar"
+ManagerBuildings="*uid://bmxism2tmbrx7"
+
 [input]
 
 move_left={

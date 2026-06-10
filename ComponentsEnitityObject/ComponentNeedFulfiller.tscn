@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cyoitue5wr7bh"]
+
+[ext_resource type="Script" uid="uid://b7xjo58f27mm3" path="res://ComponentsEnitityObject/Scripts/component_need_fulfiller.gd" id="1_cilv0"]
+
+[node name="ComponentNeedFulfiller" type="Node" unique_id=1693086378]
+script = ExtResource("1_cilv0")

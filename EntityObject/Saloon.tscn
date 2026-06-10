@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ci116i31553dh"]
+
+[ext_resource type="PackedScene" uid="uid://cyoitue5wr7bh" path="res://ComponentsEnitityObject/ComponentNeedFulfiller.tscn" id="1_keuoo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hrpn6"]
+albedo_color = Color(1, 0.35686275, 0.3529412, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1iffs"]
+
+[node name="Saloon" type="Node3D" unique_id=326167469]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1771044360]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_hrpn6")
+mesh = SubResource("BoxMesh_1iffs")
+
+[node name="ComponentNeedFulfiller" parent="." unique_id=1693086378 instance=ExtResource("1_keuoo")]
+_fulfilled_needs = {
+"hunger": 120
+}
