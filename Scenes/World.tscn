@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://ci116i31553dh" path="res://EntityObject/Saloon.tscn" id="4_y7y61"]
 [ext_resource type="PackedScene" uid="uid://bjccdh4aav08b" path="res://EntityObject/Tavern.tscn" id="5_q2d71"]
 [ext_resource type="PackedScene" uid="uid://cjotxw4apxt8x" path="res://EntityObject/SocialHub.tscn" id="6_uo7di"]
+[ext_resource type="PackedScene" uid="uid://d2sjpdxsuihja" path="res://EntityOrganism/Entity_Hero.tscn" id="8_uo7di"]
+[ext_resource type="PackedScene" uid="uid://i3301nlfi88j" path="res://Temp_scenes/NeedsDisplay.tscn" id="9_kn06e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q2d71"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -41,7 +43,7 @@ size = Vector3(16, 1, 32)
 material = SubResource("StandardMaterial3D_ti1bm")
 
 [node name="Node3D2" parent="." unique_id=1023616631 instance=ExtResource("4_gjpho")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 1)
 
 [node name="House" parent="." unique_id=1373769726 instance=ExtResource("3_45d1s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, -13)
@@ -54,3 +56,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1, -12)
 
 [node name="SocialHub" parent="." unique_id=217565165 instance=ExtResource("6_uo7di")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, 11)
+
+[node name="EntityHero" parent="." unique_id=398184550 instance=ExtResource("8_uo7di")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Control" parent="." unique_id=1912747829 instance=ExtResource("9_kn06e")]

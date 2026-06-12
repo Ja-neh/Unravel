@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://d2sjpdxsuihja"]
+
+[ext_resource type="Script" uid="uid://nw3auqcgnavi" path="res://EntityOrganism/Scripts/EntityHero.gd" id="1_dc4p2"]
+[ext_resource type="Script" uid="uid://d4fjncpdd38yq" path="res://ComponentsEntityOrganism/Scripts/ComponentHealth.gd" id="2_a1a8v"]
+[ext_resource type="Script" uid="uid://bt1o6i7qj46b2" path="res://UtilityAI/UtilityDecision.gd" id="2_v5jgg"]
+[ext_resource type="Script" uid="uid://fwy1wul8wuam" path="res://ComponentsEntityOrganism/Scripts/ComponentNeeds.gd" id="3_03hyl"]
+[ext_resource type="Script" uid="uid://oa187lnao4ym" path="res://UtilityAI/UtilityAction.gd" id="3_jmh18"]
+[ext_resource type="Script" uid="uid://ckv4sl70oq7cr" path="res://UtilityAI/UtilityConsiderationStat.gd" id="4_v5jgg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypo35"]
+albedo_color = Color(0.2627451, 0.4745098, 0.8980392, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2xeht"]
+
+[sub_resource type="Curve" id="Curve_v5jgg"]
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(25.991192, 0.49438208), -0.020723319, -0.020723319, 0, 0, Vector2(100, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_jmh18"]
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(9.69163, 0.5842697), -0.041446622, -0.041446622, 0, 0, Vector2(23.348019, 0.25842702), -0.00784788, -0.00784788, 0, 0, Vector2(100, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_a1a8v"]
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(40.528637, 0.516854), -0.011659712, -0.011659712, 0, 0, Vector2(100, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_03hyl"]
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(50.22027, 0.49438208), -0.023746619, -0.023746619, 0, 0, Vector2(100, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="EntityHero" type="Node3D" unique_id=398184550]
+script = ExtResource("1_dc4p2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1838712666]
+material_override = SubResource("StandardMaterial3D_ypo35")
+mesh = SubResource("CapsuleMesh_2xeht")
+
+[node name="ComponentHealth" type="Node" parent="." unique_id=1787281386]
+script = ExtResource("2_a1a8v")
+metadata/_custom_type_script = "uid://d4fjncpdd38yq"
+
+[node name="ComponentNeeds" type="Node" parent="." unique_id=54401587]
+script = ExtResource("3_03hyl")
+metadata/_custom_type_script = "uid://fwy1wul8wuam"
+
+[node name="UtilityDecision" type="Node" parent="." unique_id=1261356662 node_paths=PackedStringArray("actions")]
+script = ExtResource("2_v5jgg")
+actions = [NodePath("Eat"), NodePath("Sleep"), NodePath("Socialize"), NodePath("HaveFun")]
+metadata/_custom_type_script = "uid://bt1o6i7qj46b2"
+
+[node name="Eat" type="Node" parent="UtilityDecision" unique_id=1577898900 node_paths=PackedStringArray("factors")]
+script = ExtResource("3_jmh18")
+actionID = "hunger"
+factors = [NodePath("Hungry")]
+metadata/_custom_type_script = "uid://oa187lnao4ym"
+
+[node name="Hungry" type="Node" parent="UtilityDecision/Eat" unique_id=765022487]
+script = ExtResource("4_v5jgg")
+contextID = "hunger"
+curve = SubResource("Curve_v5jgg")
+metadata/_custom_type_script = "uid://ckv4sl70oq7cr"
+
+[node name="Sleep" type="Node" parent="UtilityDecision" unique_id=1720769194 node_paths=PackedStringArray("factors")]
+script = ExtResource("3_jmh18")
+actionID = "rest"
+factors = [NodePath("Tired")]
+metadata/_custom_type_script = "uid://oa187lnao4ym"
+
+[node name="Tired" type="Node" parent="UtilityDecision/Sleep" unique_id=366130000]
+script = ExtResource("4_v5jgg")
+contextID = "rest"
+curve = SubResource("Curve_jmh18")
+metadata/_custom_type_script = "uid://ckv4sl70oq7cr"
+
+[node name="Socialize" type="Node" parent="UtilityDecision" unique_id=1539017307 node_paths=PackedStringArray("factors")]
+script = ExtResource("3_jmh18")
+actionID = "social"
+factors = [NodePath("SocalNeed")]
+metadata/_custom_type_script = "uid://oa187lnao4ym"
+
+[node name="SocalNeed" type="Node" parent="UtilityDecision/Socialize" unique_id=1397801364]
+script = ExtResource("4_v5jgg")
+contextID = "social"
+curve = SubResource("Curve_a1a8v")
+metadata/_custom_type_script = "uid://ckv4sl70oq7cr"
+
+[node name="HaveFun" type="Node" parent="UtilityDecision" unique_id=1980510294 node_paths=PackedStringArray("factors")]
+script = ExtResource("3_jmh18")
+actionID = "fun"
+factors = [NodePath("Bored")]
+metadata/_custom_type_script = "uid://oa187lnao4ym"
+
+[node name="Bored" type="Node" parent="UtilityDecision/HaveFun" unique_id=1967081858]
+script = ExtResource("4_v5jgg")
+contextID = "fun"
+curve = SubResource("Curve_03hyl")
+metadata/_custom_type_script = "uid://ckv4sl70oq7cr"

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://i3301nlfi88j"]
+
+[ext_resource type="Script" uid="uid://bhlv0vfju32d2" path="res://Temp_scenes/needs_display.gd" id="1_q85ua"]
+
+[node name="Control" type="Control" unique_id=1912747829]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q85ua")
+
+[node name="BoxContainer" type="BoxContainer" parent="." unique_id=1132365959]
+layout_mode = 0
+offset_right = 132.0
+offset_bottom = 157.0
+vertical = true
+
+[node name="Hunger" type="Label" parent="BoxContainer" unique_id=6958854]
+layout_mode = 2
+
+[node name="Rest" type="Label" parent="BoxContainer" unique_id=1942750020]
+layout_mode = 2
+
+[node name="Social" type="Label" parent="BoxContainer" unique_id=1215542637]
+layout_mode = 2
+
+[node name="Fun" type="Label" parent="BoxContainer" unique_id=819775997]
+layout_mode = 2
