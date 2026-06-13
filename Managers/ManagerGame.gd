@@ -1,7 +1,7 @@
 extends Node
 
-const TICK_RATE: float = 1.0 / 60.0
-const SLOW_TICK_RATE: float = 1.0  # once per second
+const WORLD_TICK_RATE: float = 1.0 / 60.0 # 60 times in a second
+const SLOW_TICK_RATE: float = 3.0  # once per second
 
 var _accumulator: float = 0.0
 var _slow_accumulator: float = 0.0
@@ -19,18 +19,24 @@ func unregister_entity(living_entity : Node3D) -> void:
 
 func _process(delta: float) -> void:
 	_accumulator += delta
-	while _accumulator >= TICK_RATE:
-		_fast_tick()
-		_accumulator -= TICK_RATE
+	while _accumulator >= WORLD_TICK_RATE:
+		_world_tick()
+		_accumulator -= WORLD_TICK_RATE
 
 	_slow_accumulator += delta
 	while _slow_accumulator >= SLOW_TICK_RATE:
 		_slow_tick()
 		_slow_accumulator -= SLOW_TICK_RATE
 
-func _fast_tick() -> void:
+
+func _world_tick() -> void:
+	ManagerBuildings.world_tick(WORLD_TICK_RATE)
+	
 	for entity in _living_entities:
-		entity.update_fast(TICK_RATE)
+		entity.update_fast(WORLD_TICK_RATE)
+		
+	
+
 
 func _slow_tick() -> void:
 	for entity in _living_entities:

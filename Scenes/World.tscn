@@ -2,11 +2,8 @@
 
 [ext_resource type="Script" uid="uid://db511qcgvtkh3" path="res://Scripts/world.gd" id="1_y7y61"]
 [ext_resource type="Texture2D" uid="uid://c1awgoosr5lls" path="res://PNG/Orange/texture_10.png" id="2_p70al"]
-[ext_resource type="PackedScene" uid="uid://chjv0bk37ipd4" path="res://EntityObject/House.tscn" id="3_45d1s"]
 [ext_resource type="PackedScene" uid="uid://by1c53yb2eg5r" path="res://Scenes/Player.tscn" id="4_gjpho"]
-[ext_resource type="PackedScene" uid="uid://ci116i31553dh" path="res://EntityObject/Saloon.tscn" id="4_y7y61"]
-[ext_resource type="PackedScene" uid="uid://bjccdh4aav08b" path="res://EntityObject/Tavern.tscn" id="5_q2d71"]
-[ext_resource type="PackedScene" uid="uid://cjotxw4apxt8x" path="res://EntityObject/SocialHub.tscn" id="6_uo7di"]
+[ext_resource type="PackedScene" uid="uid://by88m2g2rdxag" path="res://EntityObject/Building.tscn" id="6_45d1s"]
 [ext_resource type="PackedScene" uid="uid://d2sjpdxsuihja" path="res://EntityOrganism/Entity_Hero.tscn" id="8_uo7di"]
 [ext_resource type="PackedScene" uid="uid://i3301nlfi88j" path="res://Temp_scenes/NeedsDisplay.tscn" id="9_kn06e"]
 
@@ -45,19 +42,56 @@ material = SubResource("StandardMaterial3D_ti1bm")
 [node name="Node3D2" parent="." unique_id=1023616631 instance=ExtResource("4_gjpho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 1)
 
-[node name="House" parent="." unique_id=1373769726 instance=ExtResource("3_45d1s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, -13)
+[node name="Saloon" parent="." unique_id=1799062606 instance=ExtResource("6_45d1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1, -13)
 
-[node name="Saloon" parent="." unique_id=326167469 instance=ExtResource("4_y7y61")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, 12)
+[node name="ComponentNeedFulfiller" parent="Saloon" index="1" unique_id=1693086378]
+_fulfilled_needs = Dictionary[String, int]({
+"hunger": 35
+})
+_times_to_complete_needs = Dictionary[String, int]({
+"hunger": 500
+})
 
-[node name="Tavern" parent="." unique_id=999872177 instance=ExtResource("5_q2d71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1, -12)
+[node name="House" parent="." unique_id=232284350 instance=ExtResource("6_45d1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, 10)
 
-[node name="SocialHub" parent="." unique_id=217565165 instance=ExtResource("6_uo7di")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, 11)
+[node name="ComponentNeedFulfiller" parent="House" index="1" unique_id=1693086378]
+_fulfilled_needs = Dictionary[String, int]({
+"rest": 100
+})
+_times_to_complete_needs = Dictionary[String, int]({
+"rest": 7200
+})
+
+[node name="Tavern" parent="." unique_id=1689133805 instance=ExtResource("6_45d1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, 11)
+
+[node name="ComponentNeedFulfiller" parent="Tavern" index="1" unique_id=1693086378]
+_fulfilled_needs = Dictionary[String, int]({
+"fun": 60
+})
+_times_to_complete_needs = Dictionary[String, int]({
+"fun": 3000
+})
+
+[node name="SocialHub" parent="." unique_id=342301376 instance=ExtResource("6_45d1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1, -13)
+
+[node name="ComponentNeedFulfiller" parent="SocialHub" index="1" unique_id=1693086378]
+_fulfilled_needs = Dictionary[String, int]({
+"social": 75
+})
+_times_to_complete_needs = Dictionary[String, int]({
+"social": 1500
+})
+
+[node name="Control" parent="." unique_id=1912747829 instance=ExtResource("9_kn06e")]
 
 [node name="EntityHero" parent="." unique_id=398184550 instance=ExtResource("8_uo7di")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="Control" parent="." unique_id=1912747829 instance=ExtResource("9_kn06e")]
+[editable path="Saloon"]
+[editable path="House"]
+[editable path="Tavern"]
+[editable path="SocialHub"]

@@ -2,13 +2,16 @@ extends Node
 class_name ComponentNeedFulfiller
 
 @export var _fulfilled_needs : Dictionary[String, int] = {}
+@export var _times_to_complete_needs : Dictionary[String, int] = {}
 
 
-func _ready() -> void:
-	var building : Node3D = get_parent()
-	ManagerBuildings.register_building(building , _fulfilled_needs.keys())
+func needs_fulfilled() -> Array[String]:
+	return _fulfilled_needs.keys()
 
 
-func _exit_tree() -> void:
-	var building : Node3D = get_parent()
-	ManagerBuildings.unregister_building(building, _fulfilled_needs.keys())
+func need_gain(need : String):
+	return _fulfilled_needs[need]
+
+
+func time_to_complete_need(need : String):
+	return _times_to_complete_needs[need]

@@ -12,6 +12,8 @@ albedo_color = Color(0.2627451, 0.4745098, 0.8980392, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2xeht"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a1a8v"]
+
 [sub_resource type="Curve" id="Curve_v5jgg"]
 _limits = [0.0, 1.0, 0.0, 100.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(25.991192, 0.49438208), -0.020723319, -0.020723319, 0, 0, Vector2(100, 0), 0.0, 0.0, 0, 0]
@@ -32,12 +34,15 @@ _limits = [0.0, 1.0, 0.0, 100.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(50.22027, 0.49438208), -0.023746619, -0.023746619, 0, 0, Vector2(100, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="EntityHero" type="Node3D" unique_id=398184550]
+[node name="EntityHero" type="CharacterBody3D" unique_id=509211569]
 script = ExtResource("1_dc4p2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1838712666]
 material_override = SubResource("StandardMaterial3D_ypo35")
 mesh = SubResource("CapsuleMesh_2xeht")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=462417901]
+shape = SubResource("CapsuleShape3D_a1a8v")
 
 [node name="ComponentHealth" type="Node" parent="." unique_id=1787281386]
 script = ExtResource("2_a1a8v")
