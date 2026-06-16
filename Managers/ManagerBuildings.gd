@@ -1,8 +1,11 @@
 extends Node
 
+#region variables
 var _buildings_by_needs : Dictionary = {}
 var _buildings : Array[Node3D] = []
+#endregion
 
+#region registration
 func register_building(building : Node3D, needs : Array[String]) -> void:
 	for need in needs:
 		if not _buildings_by_needs.has(need):
@@ -23,7 +26,9 @@ func unregister_building(building: Node3D, needs : Array[String]) -> void:
 	
 	if _buildings.has(building):
 		_buildings.erase(building)
+#endregion
 
+#region find fulfiller
 func find_nearest_fulfiller(entity_position : Vector3, need : String) -> Node3D:
 	var closest_fulfiller : Node3D
 	var shortest_distance : float = INF
@@ -38,8 +43,10 @@ func find_nearest_fulfiller(entity_position : Vector3, need : String) -> Node3D:
 				closest_fulfiller = fulfiller
 			
 	return closest_fulfiller
+#endregion
 
-
+#region world rick
 func world_tick(delta : float) -> void:
 	for building in _buildings:
 		building.world_tick(delta)
+#endregion

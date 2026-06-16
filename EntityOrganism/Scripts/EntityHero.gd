@@ -6,7 +6,7 @@ class_name EntityHero
 @onready var _utility_decision = $UtilityDecision
 
 signal update_ui(needs)
-var action : String
+var current_need_action : String
 var completing_action : bool = false
 
 func _ready() -> void:
@@ -19,14 +19,14 @@ func _exit_tree() -> void:
 
 
 func  _process(delta: float) -> void:
-	update_ui.emit( _component_needs.need_values )
+	update_ui.emit( _component_needs.get_all_needs() )
 
 
 func update_decision(delta : float) -> void:
 	if not completing_action:
-		_utility_decision.context = _component_needs.need_values
+		_utility_decision.context = _component_needs.get_all_needs()
 		var action_to_do : UtilityAction = _utility_decision.get_best_action()
-		action = action_to_do.actionID
+		current_need_action = action_to_do.actionID
 		
 		var fulfiller : Node3D = ManagerBuildings.find_nearest_fulfiller(global_position, action_to_do.actionID)
 		if fulfiller:
@@ -43,6 +43,10 @@ func update_fast(delta: float) -> void:
 
 func update_slow(delta: float) -> void:
 	_component_needs.update_decay(delta)
+
+
+func need_action() -> String:
+	return current_need_action
 
 
 func _entity_died() -> void:
