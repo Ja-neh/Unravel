@@ -3,8 +3,8 @@ class_name UtilityConsiderationBoolean
 
 
 func calculate_factor_score() -> float:
-	return calculate_consideration_score()
+	return _calculate_consideration_score()
 
 
-func calculate_consideration_score() -> float:
-	return int(utilityDecision.context[contextID])
+func _calculate_consideration_score() -> float:
+	return int(utilityDecision.get_need_from_context(need))

@@ -8,12 +8,11 @@ enum CalculationMethod{
 	DIVIDE,
 	AVERAGE,
 	MIN,
-	MAX,
-	NEGATION
+	MAX
 }
 
 @export var actions : Array[UtilityAction]
-var context : Dictionary = {}
+var _context : Dictionary = {}
 
 
 func _ready() -> void:
@@ -24,6 +23,16 @@ func _ready() -> void:
 			factor.utilityDecision = self
 
 
+func set_context(context : Dictionary) -> void:
+
+	_context = context
+
+
+func get_need_from_context(need : String) -> float:
+	return _context[need]
+
+
+#action in name... but could also be viwed as need to fulfill
 func get_best_action() -> UtilityAction:
 	var bestAction : UtilityAction = actions[0]
 	var highestScore : float = 0
@@ -59,6 +68,7 @@ func calculate_final_score(calculationMethod : CalculationMethod, scores : Array
 			return 0
 
 
+#region calculation methods implementations
 func calculate_via_add(scores : Array[float]) -> float:
 	var totalScore : float = scores[0]
 	
@@ -112,3 +122,4 @@ func calculate_via_min(scores : Array[float]) -> float:
 
 func calculate_via_max(scores : Array[float]) -> float:
 	return scores.max()
+#endregion

@@ -2,7 +2,7 @@ extends Node
 
 #region variables
 const WORLD_TICK_RATE: float = 1.0 / 60.0 # 60 times in a second
-const SLOW_TICK_RATE: float = 3.0  # once per second
+const SLOW_TICK_RATE: float = 3.0  # once every 3 second
 
 var _accumulator: float = 0.0
 var _slow_accumulator: float = 0.0
@@ -33,16 +33,14 @@ func _process(delta: float) -> void:
 
 #region ticks
 func _world_tick() -> void:
-	ManagerBuildings.world_tick(WORLD_TICK_RATE)
-	
 	for entity in _living_entities:
 		entity.update_fast(WORLD_TICK_RATE)
 		
 	
 
 func _slow_tick() -> void:
+	ManagerBuildings.world_tick(SLOW_TICK_RATE)
+	
 	for entity in _living_entities:
 		entity.update_slow(SLOW_TICK_RATE)
-		
-		
 #endregion

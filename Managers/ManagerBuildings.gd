@@ -1,31 +1,32 @@
 extends Node
 
 #region variables
-var _buildings_by_needs : Dictionary = {}
-var _buildings : Array[Node3D] = []
+#need, array of fulfillers
+var _fulfillers_by_needs : Dictionary[String, Array] = {}
+var _fulfillers : Array[Node3D] = []
 #endregion
 
 #region registration
-func register_building(building : Node3D, needs : Array[String]) -> void:
+func register_fulfiller(fulfiller : Node3D, needs : Array[String]) -> void:
 	for need in needs:
-		if not _buildings_by_needs.has(need):
-			_buildings_by_needs[need] = []
+		if not _fulfillers_by_needs.has(need):
+			_fulfillers_by_needs[need] = []
 		
-		if building not in _buildings_by_needs[need]:
-			_buildings_by_needs[need].append(building)
+		if fulfiller not in _fulfillers_by_needs[need]:
+			_fulfillers_by_needs[need].append(fulfiller)
 			
-	if not _buildings.has(building):
-		_buildings.append(building)
+	if not _fulfillers.has(fulfiller):
+		_fulfillers.append(fulfiller)
 
-func unregister_building(building: Node3D, needs : Array[String]) -> void:
+func unregister_fulfiller(fulfiller: Node3D, needs : Array[String]) -> void:
 	for need in needs:
-		if _buildings_by_needs[need].has(building):
-			_buildings_by_needs[need].erase(building)
-		if _buildings_by_needs[need].is_empty():
-			_buildings_by_needs.erase(need)
+		if _fulfillers_by_needs[need].has(fulfiller):
+			_fulfillers_by_needs[need].erase(fulfiller)
+		if _fulfillers_by_needs[need].is_empty():
+			_fulfillers_by_needs.erase(need)
 	
-	if _buildings.has(building):
-		_buildings.erase(building)
+	if _fulfillers.has(fulfiller):
+		_fulfillers.erase(fulfiller)
 #endregion
 
 #region find fulfiller
@@ -35,8 +36,8 @@ func find_nearest_fulfiller(entity_position : Vector3, need : String) -> Node3D:
 
 	var current_distance : float
 	
-	if _buildings_by_needs.size() > 0:
-		for fulfiller in _buildings_by_needs[need]:
+	if _fulfillers_by_needs.has(need):
+		for fulfiller in _fulfillers_by_needs[need]:
 			current_distance = entity_position.distance_squared_to(fulfiller.global_position)
 			if current_distance < shortest_distance:
 				shortest_distance = current_distance
@@ -47,6 +48,6 @@ func find_nearest_fulfiller(entity_position : Vector3, need : String) -> Node3D:
 
 #region world rick
 func world_tick(delta : float) -> void:
-	for building in _buildings:
-		building.world_tick(delta)
+	for fulfiller in _fulfillers:
+		fulfiller.world_tick(delta)
 #endregion

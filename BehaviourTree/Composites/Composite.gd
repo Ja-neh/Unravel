@@ -1,0 +1,2 @@
+extends BehaviourTreeNode
+class_name Composite

@@ -16,3 +16,7 @@ func calculate_utility_score() -> float:
 		scores.append( factor.calculate_factor_score() )
 		
 	return utilityDecision.calculate_final_score(calculationMethod, scores)
+
+
+func get_goal() -> String:
+	return actionID

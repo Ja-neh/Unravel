@@ -10,10 +10,10 @@ func _ready() -> void:
 
 
 func calculate_factor_score() -> float:
-	return calculate_aggregration_score()
+	return _calculate_aggregration_score()
 
 
-func calculate_aggregration_score() -> float:
+func _calculate_aggregration_score() -> float:
 	var factorScores : Array[float] = []
 	
 	for factor in factors:

@@ -28,3 +28,6 @@ layout_mode = 2
 
 [node name="Fun" type="Label" parent="BoxContainer" unique_id=819775997]
 layout_mode = 2
+
+[node name="Money" type="Label" parent="BoxContainer" unique_id=1059641551]
+layout_mode = 2

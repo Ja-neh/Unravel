@@ -4,6 +4,8 @@ extends Control
 @onready var rest = $BoxContainer/Rest
 @onready var social = $BoxContainer/Social
 @onready var fun = $BoxContainer/Fun
+@onready var money: Label = $BoxContainer/Money
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,7 +22,7 @@ func _update(needs : Dictionary):
 	rest.text = "Rest : " + str(needs.get("rest", 0))
 	social.text = "Social : " + str(needs.get("social", 0))
 	fun.text = "Fun : " + str(needs.get("fun", 0))
-	
+	money.text = "Money : " + str(needs.get("money", 0)) 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

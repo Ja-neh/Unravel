@@ -3,9 +3,9 @@ class_name UtilityConsiderationStat
 
 
 func calculate_factor_score() -> float:
-	return calculate_consideration_score()
+	return _calculate_consideration_score()
 
 
-func calculate_consideration_score() -> float:
-	var utility : float = curve.sample( utilityDecision.context[contextID] )
+func _calculate_consideration_score() -> float:
+	var utility : float = curve.sample( utilityDecision.get_need_from_context(need) )
 	return utility

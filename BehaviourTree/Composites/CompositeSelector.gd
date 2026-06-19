@@ -1,0 +1,2 @@
+extends Composite
+class_name CompositeSelector

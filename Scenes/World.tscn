@@ -42,48 +42,59 @@ material = SubResource("StandardMaterial3D_ti1bm")
 [node name="Node3D2" parent="." unique_id=1023616631 instance=ExtResource("4_gjpho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 1)
 
-[node name="Saloon" parent="." unique_id=1799062606 instance=ExtResource("6_45d1s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1, -13)
+[node name="House" parent="." unique_id=1799062606 instance=ExtResource("6_45d1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, -12)
 
-[node name="ComponentNeedFulfiller" parent="Saloon" index="1" unique_id=1693086378]
-_fulfilled_needs = Dictionary[String, int]({
-"hunger": 35
-})
-_times_to_complete_needs = Dictionary[String, int]({
-"hunger": 500
-})
-
-[node name="House" parent="." unique_id=232284350 instance=ExtResource("6_45d1s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, 10)
-
-[node name="ComponentNeedFulfiller" parent="House" index="1" unique_id=1693086378]
+[node name="ComponentNeedFulfiller" parent="House" index="1" unique_id=661336671]
 _fulfilled_needs = Dictionary[String, int]({
 "rest": 100
 })
-_times_to_complete_needs = Dictionary[String, int]({
-"rest": 7200
+_times_to_complete = Dictionary[String, int]({
+"rest": 8
 })
 
-[node name="Tavern" parent="." unique_id=1689133805 instance=ExtResource("6_45d1s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, 11)
+[node name="Saloon" parent="." unique_id=300134746 instance=ExtResource("6_45d1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, 12)
 
-[node name="ComponentNeedFulfiller" parent="Tavern" index="1" unique_id=1693086378]
+[node name="ComponentNeedFulfiller" parent="Saloon" index="1" unique_id=661336671]
 _fulfilled_needs = Dictionary[String, int]({
-"fun": 60
+"hunger": 100
 })
-_times_to_complete_needs = Dictionary[String, int]({
-"fun": 3000
+_times_to_complete = Dictionary[String, int]({
+"hunger": 1
 })
 
-[node name="SocialHub" parent="." unique_id=342301376 instance=ExtResource("6_45d1s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1, -13)
+[node name="Work" parent="." unique_id=200994670 instance=ExtResource("6_45d1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2, -11)
 
-[node name="ComponentNeedFulfiller" parent="SocialHub" index="1" unique_id=1693086378]
+[node name="ComponentNeedFulfiller" parent="Work" index="1" unique_id=661336671]
 _fulfilled_needs = Dictionary[String, int]({
-"social": 75
+"money": 100
 })
-_times_to_complete_needs = Dictionary[String, int]({
-"social": 1500
+_times_to_complete = Dictionary[String, int]({
+"money": 8
+})
+
+[node name="Social" parent="." unique_id=1508187048 instance=ExtResource("6_45d1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 13)
+
+[node name="ComponentNeedFulfiller" parent="Social" index="1" unique_id=661336671]
+_fulfilled_needs = Dictionary[String, int]({
+"social": 100
+})
+_times_to_complete = Dictionary[String, int]({
+"social": 1
+})
+
+[node name="Tarven" parent="." unique_id=2071567860 instance=ExtResource("6_45d1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4)
+
+[node name="ComponentNeedFulfiller" parent="Tarven" index="1" unique_id=661336671]
+_fulfilled_needs = Dictionary[String, int]({
+"fun": 100
+})
+_times_to_complete = Dictionary[String, int]({
+"fun": 2
 })
 
 [node name="Control" parent="." unique_id=1912747829 instance=ExtResource("9_kn06e")]
@@ -91,7 +102,8 @@ _times_to_complete_needs = Dictionary[String, int]({
 [node name="EntityHero" parent="." unique_id=398184550 instance=ExtResource("8_uo7di")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[editable path="Saloon"]
 [editable path="House"]
-[editable path="Tavern"]
-[editable path="SocialHub"]
+[editable path="Saloon"]
+[editable path="Work"]
+[editable path="Social"]
+[editable path="Tarven"]

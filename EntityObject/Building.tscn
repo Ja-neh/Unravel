@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://by88m2g2rdxag"]
 
-[ext_resource type="PackedScene" uid="uid://cyoitue5wr7bh" path="res://ComponentsEntityObject/Component_Need_Fulfiller.tscn" id="1_6o8sr"]
 [ext_resource type="Script" uid="uid://vx45wvpbyly7" path="res://EntityObject/Scripts/Building.gd" id="1_vgplq"]
+[ext_resource type="Script" uid="uid://b7xjo58f27mm3" path="res://ComponentsEntityObject/ComponentNeedFulfiller.gd" id="2_vgplq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vgplq"]
 
@@ -14,7 +14,9 @@ script = ExtResource("1_vgplq")
 transform = Transform3D(1, 0, 0, 0, 0.2953251, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_vgplq")
 
-[node name="ComponentNeedFulfiller" parent="." unique_id=1693086378 instance=ExtResource("1_6o8sr")]
+[node name="ComponentNeedFulfiller" type="Node" parent="." unique_id=661336671]
+script = ExtResource("2_vgplq")
+metadata/_custom_type_script = "uid://b7xjo58f27mm3"
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1200806675]
 
