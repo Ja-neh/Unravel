@@ -1,8 +1,12 @@
+extends Node
 class_name GOAPGoal
 
+var goal_name : String
+#need tied to goal
 var identifier : String
-var effect_target : String
-var treshold
+
+#float OR bool -- treshold OR condition
+var target
 
 enum Operator{
 	LessThan, 
@@ -15,7 +19,7 @@ var operator : Operator
 func is_goal_satisfied(state : Dictionary):
 	var new_value = state[identifier]
 	match operator:
-		Operator.LessThan : return new_value < treshold
-		Operator.GreaterThan : return new_value > treshold
-		Operator.EqualTo : return new_value == treshold
+		Operator.LessThan : return new_value < target
+		Operator.GreaterThan : return new_value > target
+		Operator.EqualTo : return new_value == target
 		

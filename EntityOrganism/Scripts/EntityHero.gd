@@ -4,7 +4,7 @@ class_name EntityHero
 @onready var _component_health = $ComponentHealth
 @onready var _component_primary_needs = $ComponentPrimaryNeeds
 @onready var _component_secondary_needs = $ComponentSecondaryNeeds
-@onready var _utility_decision_primary = $UtilityDecisionPrimary
+@onready var _utility_decision_primary : UtilityDecision = $UtilityDecisionPrimary
 @onready var _utility_decision_secondary: UtilityDecision = $UtilityDecisionSecondary
 
 
