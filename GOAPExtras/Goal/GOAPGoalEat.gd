@@ -1,7 +1,8 @@
 extends GOAPGoal
-class_name SatisfyHunger
+class_name GOAPGoalEat
 
 func _init() -> void:
+	goal_name = "eat"
 	identifier = "hunger"
-	treshold = 70
+	target = 75
 	operator = Operator.GreaterThan

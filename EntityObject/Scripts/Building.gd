@@ -1,4 +1,5 @@
 extends Node3D
+class_name Fulfiller
 
 #region variables
 @onready var _component_need_fulfiller = $ComponentNeedFulfiller
@@ -24,13 +25,12 @@ func _exit_tree() -> void:
 
 
 #region entities interaction
-func request_access(entity : Node3D) -> void:
-	if entity in _area.get_overlapping_bodies():
-		if not _entities_in_building.has(entity):
-			var need = entity.need_action()
-			var time = _component_need_fulfiller.get_time_to_complete_need(need)
-			_entities_in_building[entity] = time
-			entity.completing_action = true
+func request_access(entity : Node3D, need : String) -> void:
+	#if entity in _area.get_overlapping_bodies():
+	if not _entities_in_building.has(entity):
+		var time = _component_need_fulfiller.get_time_to_complete_need(need)
+		_entities_in_building[entity] = time
+		entity.completing_action = true
 #endregion
 
 

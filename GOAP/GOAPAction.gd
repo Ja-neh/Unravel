@@ -5,6 +5,7 @@ const _MAX_VALUE = 100
 const _MIN_VALUE = 0
 
 @export var action_name : String
+@export var identifier : String
 @export var _pre_conditions : Dictionary
 @export var _effects : Dictionary
 @export var _cost : float = 1
@@ -47,6 +48,10 @@ func execute(state : Dictionary) -> Dictionary:
 			new_state[effect] = clamp(new_value, _MIN_VALUE, _MAX_VALUE)
 			
 	return new_state
+
+
+func execute_real(entity : Node3D) -> void:
+	print("WARNING : Called from base class")
 
 
 func calculate_cost() -> float:

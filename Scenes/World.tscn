@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c1awgoosr5lls" path="res://PNG/Orange/texture_10.png" id="2_p70al"]
 [ext_resource type="PackedScene" uid="uid://by1c53yb2eg5r" path="res://Scenes/Player.tscn" id="4_gjpho"]
 [ext_resource type="PackedScene" uid="uid://by88m2g2rdxag" path="res://EntityObject/Building.tscn" id="6_45d1s"]
+[ext_resource type="PackedScene" uid="uid://dhlcnuxja6awn" path="res://Trying new things/NPC.tscn" id="7_y7y61"]
 [ext_resource type="PackedScene" uid="uid://d2sjpdxsuihja" path="res://EntityOrganism/Entity_Hero.tscn" id="8_uo7di"]
 [ext_resource type="PackedScene" uid="uid://i3301nlfi88j" path="res://Temp_scenes/NeedsDisplay.tscn" id="9_kn06e"]
 
@@ -101,6 +102,9 @@ _times_to_complete = Dictionary[String, int]({
 
 [node name="EntityHero" parent="." unique_id=398184550 instance=ExtResource("8_uo7di")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Npc" parent="." unique_id=1739506664 instance=ExtResource("7_y7y61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -5)
 
 [editable path="House"]
 [editable path="Saloon"]

@@ -18,5 +18,5 @@ func calculate_utility_score() -> float:
 	return utilityDecision.calculate_final_score(calculationMethod, scores)
 
 
-func get_goal() -> String:
+func get_identifier() -> String:
 	return actionID

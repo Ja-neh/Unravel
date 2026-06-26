@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 ManagerGame="*uid://dv3nrls1qhuar"
 ManagerBuildings="*uid://bmxism2tmbrx7"
+NeedToGoal="*uid://7beuptkvc87q"
 
 [input]
 

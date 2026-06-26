@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://dhlcnuxja6awn"]
+
+[ext_resource type="Script" uid="uid://b2kvomyq6n1k3" path="res://Trying new things/npc.gd" id="1_jjuym"]
+[ext_resource type="Script" uid="uid://d4fjncpdd38yq" path="res://ComponentsEntityOrganism/ComponentHealth.gd" id="2_fov1g"]
+[ext_resource type="Script" uid="uid://fwy1wul8wuam" path="res://ComponentsEntityOrganism/ComponentPrimaryNeeds.gd" id="3_62h32"]
+[ext_resource type="Script" uid="uid://ruvow1oaqjn0" path="res://ComponentsEntityOrganism/ComponentSecondaryNeeds.gd" id="4_dajtf"]
+[ext_resource type="Script" uid="uid://bt1o6i7qj46b2" path="res://UtilityAI/UtilityDecision.gd" id="5_q6uiw"]
+[ext_resource type="Script" uid="uid://oa187lnao4ym" path="res://UtilityAI/UtilityAction.gd" id="6_o1h3l"]
+[ext_resource type="Script" uid="uid://ckv4sl70oq7cr" path="res://UtilityAI/UtilityConsiderationStat.gd" id="7_fjohu"]
+[ext_resource type="Script" uid="uid://c0fiwuklkwexp" path="res://GOAP/GOAPAgent.gd" id="8_fov1g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fov1g"]
+albedo_color = Color(0.5294118, 0.7529412, 0.14509805, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_olwcn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_am3j6"]
+
+[sub_resource type="Curve" id="Curve_vg60j"]
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(25.991192, 0.49438208), -0.020723319, -0.020723319, 0, 0, Vector2(100, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_4pdpo"]
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(9.69163, 0.5842697), -0.041446622, -0.041446622, 0, 0, Vector2(23.348019, 0.25842702), -0.00784788, -0.00784788, 0, 0, Vector2(100, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_4wvl5"]
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(40.528637, 0.516854), -0.011659712, -0.011659712, 0, 0, Vector2(100, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_q4kmg"]
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(50.22027, 0.49438208), -0.023746619, -0.023746619, 0, 0, Vector2(100, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_baf53"]
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(14.537446, 0.44943827), -0.011902625, -0.011902625, 0, 0, Vector2(100, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Npc" type="CharacterBody3D" unique_id=1739506664 node_paths=PackedStringArray("_goap_agent")]
+script = ExtResource("1_jjuym")
+_goap_agent = NodePath("GoapAgent")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=384191694]
+material_override = SubResource("StandardMaterial3D_fov1g")
+mesh = SubResource("CapsuleMesh_olwcn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=677973373]
+shape = SubResource("CapsuleShape3D_am3j6")
+
+[node name="ComponentHealth" type="Node" parent="." unique_id=946487267]
+script = ExtResource("2_fov1g")
+metadata/_custom_type_script = "uid://d4fjncpdd38yq"
+
+[node name="ComponentPrimaryNeeds" type="Node" parent="." unique_id=1655770581]
+script = ExtResource("3_62h32")
+_decay_rates = Dictionary[String, float]({
+"hunger": 1.0,
+"rest": 4.0
+})
+metadata/_custom_type_script = "uid://fwy1wul8wuam"
+
+[node name="ComponentSecondaryNeeds" type="Node" parent="." unique_id=538102951]
+script = ExtResource("4_dajtf")
+_decay_rates = Dictionary[String, float]({
+"fun": 2.0,
+"money": 4.0,
+"social": 2.0
+})
+metadata/_custom_type_script = "uid://ruvow1oaqjn0"
+
+[node name="UtilityDecisionPrimary" type="Node" parent="." unique_id=1518266348 node_paths=PackedStringArray("actions")]
+script = ExtResource("5_q6uiw")
+actions = [NodePath("Eat"), NodePath("Sleep")]
+metadata/_custom_type_script = "uid://bt1o6i7qj46b2"
+
+[node name="Eat" type="Node" parent="UtilityDecisionPrimary" unique_id=1529988908 node_paths=PackedStringArray("factors")]
+script = ExtResource("6_o1h3l")
+actionID = "hunger"
+factors = [NodePath("Hungry")]
+metadata/_custom_type_script = "uid://oa187lnao4ym"
+
+[node name="Hungry" type="Node" parent="UtilityDecisionPrimary/Eat" unique_id=1198349590]
+script = ExtResource("7_fjohu")
+need = "hunger"
+curve = SubResource("Curve_vg60j")
+metadata/_custom_type_script = "uid://ckv4sl70oq7cr"
+
+[node name="Sleep" type="Node" parent="UtilityDecisionPrimary" unique_id=1017037517 node_paths=PackedStringArray("factors")]
+script = ExtResource("6_o1h3l")
+actionID = "rest"
+factors = [NodePath("Tired")]
+metadata/_custom_type_script = "uid://oa187lnao4ym"
+
+[node name="Tired" type="Node" parent="UtilityDecisionPrimary/Sleep" unique_id=1089117280]
+script = ExtResource("7_fjohu")
+need = "rest"
+curve = SubResource("Curve_4pdpo")
+metadata/_custom_type_script = "uid://ckv4sl70oq7cr"
+
+[node name="UtilityDecisionSecondary" type="Node" parent="." unique_id=666596400 node_paths=PackedStringArray("actions")]
+script = ExtResource("5_q6uiw")
+actions = [NodePath("Socialize"), NodePath("HaveFun"), NodePath("Work")]
+metadata/_custom_type_script = "uid://bt1o6i7qj46b2"
+
+[node name="Socialize" type="Node" parent="UtilityDecisionSecondary" unique_id=741298758 node_paths=PackedStringArray("factors")]
+script = ExtResource("6_o1h3l")
+actionID = "social"
+factors = [NodePath("SocalNeed")]
+metadata/_custom_type_script = "uid://oa187lnao4ym"
+
+[node name="SocalNeed" type="Node" parent="UtilityDecisionSecondary/Socialize" unique_id=1920914511]
+script = ExtResource("7_fjohu")
+need = "social"
+curve = SubResource("Curve_4wvl5")
+metadata/_custom_type_script = "uid://ckv4sl70oq7cr"
+
+[node name="HaveFun" type="Node" parent="UtilityDecisionSecondary" unique_id=382570688 node_paths=PackedStringArray("factors")]
+script = ExtResource("6_o1h3l")
+actionID = "fun"
+factors = [NodePath("Bored")]
+metadata/_custom_type_script = "uid://oa187lnao4ym"
+
+[node name="Bored" type="Node" parent="UtilityDecisionSecondary/HaveFun" unique_id=633066942]
+script = ExtResource("7_fjohu")
+need = "fun"
+curve = SubResource("Curve_q4kmg")
+metadata/_custom_type_script = "uid://ckv4sl70oq7cr"
+
+[node name="Work" type="Node" parent="UtilityDecisionSecondary" unique_id=1000096317 node_paths=PackedStringArray("factors")]
+script = ExtResource("6_o1h3l")
+actionID = "money"
+factors = [NodePath("Money")]
+metadata/_custom_type_script = "uid://oa187lnao4ym"
+
+[node name="Money" type="Node" parent="UtilityDecisionSecondary/Work" unique_id=1047630464]
+script = ExtResource("7_fjohu")
+need = "money"
+curve = SubResource("Curve_baf53")
+metadata/_custom_type_script = "uid://ckv4sl70oq7cr"
+
+[node name="GoapAgent" type="Node" parent="." unique_id=641598468]
+script = ExtResource("8_fov1g")
+metadata/_custom_type_script = "uid://c0fiwuklkwexp"

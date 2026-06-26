@@ -36,12 +36,12 @@ func update_decision(delta : float) -> void:
 			if p_needs[need] < 45:
 				_utility_decision_primary.set_context(p_needs) 
 				var action_to_do : UtilityAction = _utility_decision_primary.get_best_action()
-				current_need_action = action_to_do.get_goal()
+				current_need_action = action_to_do.get_identifier()
 				
 				var fulfiller : Node3D = ManagerBuildings.find_nearest_fulfiller(global_position, current_need_action)
 				if fulfiller:
 					global_position = fulfiller.global_position
-					fulfiller.request_access(self)
+					fulfiller.request_access(self, need_action())
 				return
 				
 		#seconadry needs
@@ -50,12 +50,13 @@ func update_decision(delta : float) -> void:
 			if s_needs[need] < 45:
 				_utility_decision_secondary.set_context(s_needs) 
 				var action_to_do : UtilityAction = _utility_decision_secondary.get_best_action()
-				current_need_action = action_to_do.get_goal()
+				current_need_action = action_to_do.get_identifier()
 		
 				var fulfiller : Node3D = ManagerBuildings.find_nearest_fulfiller(global_position, current_need_action)
 				if fulfiller:
 					global_position = fulfiller.global_position
-					fulfiller.request_access(self)
+					fulfiller.request_access(self, need_action())
+				return
 
 
 func update_need(need : String, amount : float) -> void:
