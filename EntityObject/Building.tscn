@@ -5,14 +5,21 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_vgplq"]
 
+[sub_resource type="PrismMesh" id="PrismMesh_vgplq"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_vgplq"]
+size = Vector3(3.9550781, 1, 6.4865723)
 
 [node name="Building" type="Node3D" unique_id=1799062606]
 script = ExtResource("1_vgplq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1698692056]
-transform = Transform3D(1, 0, 0, 0, 0.2953251, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(4, 0, 0, 0, 3, 0, 0, 0, 4, 0, 0, 0)
 mesh = SubResource("BoxMesh_vgplq")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=2078137809]
+transform = Transform3D(4.5, 0, 0, 0, 1.5, 0, 0, 0, 4.5, 0, 2.2489028, 0)
+mesh = SubResource("PrismMesh_vgplq")
 
 [node name="ComponentNeedFulfiller" type="Node" parent="." unique_id=661336671]
 script = ExtResource("2_vgplq")
@@ -21,4 +28,5 @@ metadata/_custom_type_script = "uid://b7xjo58f27mm3"
 [node name="Area3D" type="Area3D" parent="." unique_id=1200806675]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=993143523]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0068359375, -1, 1.2567139)
 shape = SubResource("BoxShape3D_vgplq")

@@ -5,19 +5,19 @@ var _current_goal: GOAPGoal = null
 var _current_plan: Array[GOAPAction] = []
 var _current_plan_step: int = 0
 var _action_planner: GOAPActionPlanner = GOAPActionPlanner.new()
-var _all_actions: Array[GOAPAction] = []
+var _actions: Array[GOAPAction] = []
 var _entity: Node3D
 
-var _is_executing: bool = false
+#var _is_executing: bool = false
 
 
 func _ready() -> void:
-	_entity = get_parent() as NPC
-	_all_actions = _entity.get_actions()
+	_entity = get_parent()
+	_actions = _entity.get_actions()
 
 
 func set_actions(actions: Array[GOAPAction]) -> void:
-	_all_actions = actions
+	_actions = actions
 
 
 func update_agent_on_goal(goal: GOAPGoal, blackboard: Dictionary) -> void:
@@ -27,9 +27,9 @@ func update_agent_on_goal(goal: GOAPGoal, blackboard: Dictionary) -> void:
 	# If goal changed, re-plan
 	if _current_goal == null or _goal_changed(goal):
 		_current_goal = goal
-		_current_plan = _action_planner.get_plan(goal, blackboard, _all_actions)
+		_current_plan = _action_planner.get_plan(goal, blackboard, _actions)
 		_current_plan_step = 0
-		_is_executing = false
+		#_is_executing = false
 	
 	# Follow the plan
 	_follow_plan()
@@ -69,7 +69,7 @@ func _execute_action(action: GOAPAction) -> void:
 	if not action.are_pre_conditions_met(state):
 		# Re-plan immediately
 		#_is_executing = false
-		_current_plan = _action_planner.get_plan(_current_goal, state, _all_actions)
+		_current_plan = _action_planner.get_plan(_current_goal, state, _actions)
 		_current_plan_step = 0
 		return
 	

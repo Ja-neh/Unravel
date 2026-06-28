@@ -4,7 +4,6 @@ class_name GOAPGoal
 var goal_name : String
 #need tied to goal
 var identifier : String
-
 #float OR bool -- treshold OR condition
 var target
 

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://by1c53yb2eg5r" path="res://Scenes/Player.tscn" id="4_gjpho"]
 [ext_resource type="PackedScene" uid="uid://by88m2g2rdxag" path="res://EntityObject/Building.tscn" id="6_45d1s"]
 [ext_resource type="PackedScene" uid="uid://dhlcnuxja6awn" path="res://Trying new things/NPC.tscn" id="7_y7y61"]
+[ext_resource type="PackedScene" uid="uid://b6wcqtcj5qpxb" path="res://EntityObject/Field.tscn" id="8_q2d71"]
 [ext_resource type="PackedScene" uid="uid://d2sjpdxsuihja" path="res://EntityOrganism/Entity_Hero.tscn" id="8_uo7di"]
 [ext_resource type="PackedScene" uid="uid://i3301nlfi88j" path="res://Temp_scenes/NeedsDisplay.tscn" id="9_kn06e"]
 
@@ -35,18 +36,17 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="Desert" type="CSGBox3D" parent="." unique_id=2118615767]
-transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0, 0)
 use_collision = true
-size = Vector3(16, 1, 32)
+size = Vector3(200, 1, 200)
 material = SubResource("StandardMaterial3D_ti1bm")
 
 [node name="Node3D2" parent="." unique_id=1023616631 instance=ExtResource("4_gjpho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 1)
 
 [node name="House" parent="." unique_id=1799062606 instance=ExtResource("6_45d1s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, -12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 2, -66)
 
-[node name="ComponentNeedFulfiller" parent="House" index="1" unique_id=661336671]
+[node name="ComponentNeedFulfiller" parent="House" index="2" unique_id=661336671]
 _fulfilled_needs = Dictionary[String, int]({
 "rest": 100
 })
@@ -55,9 +55,9 @@ _times_to_complete = Dictionary[String, int]({
 })
 
 [node name="Saloon" parent="." unique_id=300134746 instance=ExtResource("6_45d1s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, 12)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 36, 2, -40)
 
-[node name="ComponentNeedFulfiller" parent="Saloon" index="1" unique_id=661336671]
+[node name="ComponentNeedFulfiller" parent="Saloon" index="2" unique_id=661336671]
 _fulfilled_needs = Dictionary[String, int]({
 "hunger": 100
 })
@@ -66,9 +66,9 @@ _times_to_complete = Dictionary[String, int]({
 })
 
 [node name="Work" parent="." unique_id=200994670 instance=ExtResource("6_45d1s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2, -11)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 36, 2, -27)
 
-[node name="ComponentNeedFulfiller" parent="Work" index="1" unique_id=661336671]
+[node name="ComponentNeedFulfiller" parent="Work" index="2" unique_id=661336671]
 _fulfilled_needs = Dictionary[String, int]({
 "money": 100
 })
@@ -77,9 +77,12 @@ _times_to_complete = Dictionary[String, int]({
 })
 
 [node name="Social" parent="." unique_id=1508187048 instance=ExtResource("6_45d1s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 13)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 11, 2, -27)
 
-[node name="ComponentNeedFulfiller" parent="Social" index="1" unique_id=661336671]
+[node name="MeshInstance3D2" parent="Social" index="1" unique_id=2078137809]
+transform = Transform3D(4.4999995, 0, 1.4210855e-14, 0, 1.4999999, 0, -1.4210855e-14, 0, 4.4999995, 0, 2.2489028, 0)
+
+[node name="ComponentNeedFulfiller" parent="Social" index="2" unique_id=661336671]
 _fulfilled_needs = Dictionary[String, int]({
 "social": 100
 })
@@ -88,9 +91,9 @@ _times_to_complete = Dictionary[String, int]({
 })
 
 [node name="Tarven" parent="." unique_id=2071567860 instance=ExtResource("6_45d1s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 11, 2, -40)
 
-[node name="ComponentNeedFulfiller" parent="Tarven" index="1" unique_id=661336671]
+[node name="ComponentNeedFulfiller" parent="Tarven" index="2" unique_id=661336671]
 _fulfilled_needs = Dictionary[String, int]({
 "fun": 100
 })
@@ -106,8 +109,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="Npc" parent="." unique_id=1739506664 instance=ExtResource("7_y7y61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -5)
 
+[node name="OpenField" parent="." unique_id=820024664 instance=ExtResource("8_q2d71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 2, 50)
+
+[node name="HostileField" parent="." unique_id=1046088069 instance=ExtResource("8_q2d71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 2, 69)
+
 [editable path="House"]
 [editable path="Saloon"]
 [editable path="Work"]
 [editable path="Social"]
 [editable path="Tarven"]
+[editable path="OpenField"]
+[editable path="HostileField"]

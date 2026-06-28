@@ -89,7 +89,7 @@ func _sort_by_cost(a: PlanNode, b: PlanNode) -> bool:
 func _hash_state(state: Dictionary) -> String:
 	var keys = state.keys()
 	keys.sort()
-	var str = ""
+	var encoding = ""
 	for key in keys:
-		str += "%s:%s|" % [key, str(state.get(key))]
-	return str
+		encoding += "%s:%s|" % [key, str(state.get(key))]
+	return encoding

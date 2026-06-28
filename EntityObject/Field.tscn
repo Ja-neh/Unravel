@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b6wcqtcj5qpxb"]
+
+[ext_resource type="Script" uid="uid://b7xjo58f27mm3" path="res://ComponentsEntityObject/ComponentNeedFulfiller.gd" id="1_m3iqj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pkeux"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pky64"]
+size = Vector3(48, 1, 48)
+
+[node name="Field" type="Node3D" unique_id=820024664]
+script = ExtResource("1_m3iqj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=572523876]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_pkeux")
+
+[node name="ComponentNeedFulfiller" type="Node" parent="." unique_id=542740487]
+script = ExtResource("1_m3iqj")
+metadata/_custom_type_script = "uid://b7xjo58f27mm3"
+
+[node name="Area3D" type="Area3D" parent="." unique_id=75272215]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2050539933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_pky64")
