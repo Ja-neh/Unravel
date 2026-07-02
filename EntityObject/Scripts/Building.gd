@@ -52,3 +52,7 @@ func _update(delta : float) -> void:
 
 	for entity in to_remove:
 		_entities_in_building.erase(entity)
+
+
+func get_need_gain_amount(need : String) -> float:
+	return _component_need_fulfiller.get_need_gain(need)

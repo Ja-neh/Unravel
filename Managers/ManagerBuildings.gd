@@ -29,6 +29,7 @@ func unregister_fulfiller(fulfiller: Node3D, needs : Array[String]) -> void:
 		_fulfillers.erase(fulfiller)
 #endregion
 
+
 #region find fulfiller
 func find_nearest_fulfiller(entity_position : Vector3, need : String) -> Node3D:
 	var closest_fulfiller : Node3D
@@ -44,7 +45,32 @@ func find_nearest_fulfiller(entity_position : Vector3, need : String) -> Node3D:
 				closest_fulfiller = fulfiller
 			
 	return closest_fulfiller
+
+
+func get_three_closest_fulfillers_for_need(entity_position : Vector3, need : String) -> Array[Node3D]:
+	var return_fulfillers : Array[Node3D]
+	var fulfillers_ordered : Array
+	
+	if not _fulfillers_by_needs.has(need):
+		return []
+	
+	for fulfiller in _fulfillers_by_needs[need]:
+		var current_distance = entity_position.distance_squared_to(fulfiller.global_position)
+		fulfillers_ordered.append([current_distance, fulfiller])
+	
+	fulfillers_ordered.sort_custom(_sort_by_distance_to_fulfiller)
+	
+	var count = min(3, fulfillers_ordered.size())
+	for i in range(count):
+		return_fulfillers.append(fulfillers_ordered[i][1])
+		
+	return return_fulfillers
+
+
+func _sort_by_distance_to_fulfiller(a , b) -> bool:
+	return a[0] < b[0]
 #endregion
+
 
 #region world rick
 func world_tick(delta : float) -> void:

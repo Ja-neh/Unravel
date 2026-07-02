@@ -10,6 +10,7 @@ const _MIN_VALUE = 0
 @export var _effects : Dictionary
 @export var _cost : float = 1
 
+var _entity : Node3D
 
 func get_effects() -> Dictionary:
 	return _effects
@@ -20,7 +21,7 @@ func get_pre_conditions() -> Dictionary:
 
 
 func get_cost() -> float:
-	return calculate_cost()
+	return _cost
 
 
 func are_pre_conditions_met(state : Dictionary) -> bool:
@@ -50,10 +51,5 @@ func execute(state : Dictionary) -> Dictionary:
 	return new_state
 
 
-func execute_real(entity : Node3D) -> void:
+func execute_real() -> void:
 	print("WARNING : Called from base class")
-
-
-func calculate_cost() -> float:
-	print("WARNING: GOAP Action calculate_cost called from base class")
-	return 0

@@ -74,7 +74,7 @@ func _execute_action(action: GOAPAction) -> void:
 		return
 	
 	# Execute the action
-	action.execute_real(_entity)
+	action.execute_real()
 	
 	# Mark as complete (building will set completing_action = false)
 	#_is_executing = false

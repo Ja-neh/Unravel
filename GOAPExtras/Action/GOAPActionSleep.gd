@@ -1,17 +1,73 @@
 extends GOAPAction
 class_name GOAPActionSleep
 
-func _init() -> void:
+var saved_fulfiller
+
+func _init(entity : Node3D) -> void:
 	action_name = "sleep"
 	identifier = "rest"
 	_pre_conditions = {}
 	_effects = {"rest" : 100}
+	_entity = entity
 
-func execute_real(entity : Node3D) -> void:
-	var fulfiller : Node3D = ManagerBuildings.find_nearest_fulfiller(entity.global_position, identifier)
-	if fulfiller:
-		entity.global_position = fulfiller.global_position
-		fulfiller.request_access(entity, identifier)
 
-func calculate_cost() -> float:
-	return 1
+func execute(state : Dictionary) -> Dictionary:
+	#saving fulfiller and its cost
+	var fulfillers : Array = ManagerBuildings.get_three_closest_fulfillers_for_need(_entity.global_position, identifier)
+	
+	if fulfillers.is_empty():
+		return {}
+		
+	var best_cost = INF
+		
+	for fulfiller in fulfillers:
+		var fulfiller_cost = _evaluate_fulfiller(fulfiller)
+		if fulfiller_cost < best_cost:
+			saved_fulfiller = fulfiller
+			best_cost = fulfiller_cost
+	
+	_cost = best_cost
+	add_effects(saved_fulfiller)
+	
+	#execute
+	var new_state = state.duplicate()
+	
+	for effect in _effects:
+		var change = _effects[effect]
+		var current = new_state[effect]
+		
+		#Booleans
+		if typeof(change) == TYPE_BOOL:
+			new_state[effect] = change
+			
+		#numbers
+		else:
+			var new_value = current + change
+			new_state[effect] = clamp(new_value, _MIN_VALUE, _MAX_VALUE)
+			
+	return new_state
+
+
+func _evaluate_fulfiller(fulfiller: Node3D) -> float:
+	var gain = fulfiller.get_need_gain_amount(identifier)
+	var distance = _entity.global_position.distance_to(fulfiller.global_position)
+	var state = _entity.get_blackboard()
+	var current = state.get(identifier)
+	var deficit = 100 - current
+	var effective_gain = min(gain, deficit)
+	effective_gain = max(effective_gain, 1.0)
+	
+	var fulfiller_cost = (distance / effective_gain) + _cost
+	
+	return fulfiller_cost
+
+
+func execute_real() -> void:
+	if saved_fulfiller:
+		_entity.global_position = saved_fulfiller.global_position
+		saved_fulfiller.request_access(_entity, identifier)
+
+
+func add_effects(fulfiller : Node3D) -> void:
+	var value = fulfiller.get_need_gain_amount(identifier)
+	_effects[identifier] = value

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b6wcqtcj5qpxb" path="res://EntityObject/Field.tscn" id="8_q2d71"]
 [ext_resource type="PackedScene" uid="uid://d2sjpdxsuihja" path="res://EntityOrganism/Entity_Hero.tscn" id="8_uo7di"]
 [ext_resource type="PackedScene" uid="uid://i3301nlfi88j" path="res://Temp_scenes/NeedsDisplay.tscn" id="9_kn06e"]
+[ext_resource type="Script" uid="uid://vx45wvpbyly7" path="res://EntityObject/Scripts/Building.gd" id="9_uo7di"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q2d71"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -70,10 +71,10 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 36, 
 
 [node name="ComponentNeedFulfiller" parent="Work" index="2" unique_id=661336671]
 _fulfilled_needs = Dictionary[String, int]({
-"money": 100
+"money": 35
 })
 _times_to_complete = Dictionary[String, int]({
-"money": 8
+"money": 4
 })
 
 [node name="Social" parent="." unique_id=1508187048 instance=ExtResource("6_45d1s")]
@@ -111,9 +112,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -5)
 
 [node name="OpenField" parent="." unique_id=820024664 instance=ExtResource("8_q2d71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 2, 50)
+script = ExtResource("9_uo7di")
+building_name = ""
+
+[node name="ComponentNeedFulfiller" parent="OpenField" index="1" unique_id=542740487]
+_fulfilled_needs = Dictionary[String, int]({
+"rest": 20
+})
+_times_to_complete = Dictionary[String, int]({
+"rest": 2
+})
 
 [node name="HostileField" parent="." unique_id=1046088069 instance=ExtResource("8_q2d71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 2, 69)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71, 2, 71)
+script = ExtResource("9_uo7di")
+building_name = ""
+
+[node name="ComponentNeedFulfiller" parent="HostileField" index="1" unique_id=542740487]
+_fulfilled_needs = Dictionary[String, int]({
+"money": 100
+})
+_times_to_complete = Dictionary[String, int]({
+"money": 8
+})
+
+[node name="FruitTreesField" parent="." unique_id=38397181 instance=ExtResource("8_q2d71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 40)
+script = ExtResource("9_uo7di")
+building_name = ""
+
+[node name="ComponentNeedFulfiller" parent="FruitTreesField" index="1" unique_id=542740487]
+_fulfilled_needs = Dictionary[String, int]({
+"hunger": 30
+})
+_times_to_complete = Dictionary[String, int]({
+"hunger": 1
+})
 
 [editable path="House"]
 [editable path="Saloon"]
@@ -122,3 +156,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 2, 69)
 [editable path="Tarven"]
 [editable path="OpenField"]
 [editable path="HostileField"]
+[editable path="FruitTreesField"]

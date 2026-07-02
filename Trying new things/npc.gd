@@ -17,11 +17,11 @@ func _ready() -> void:
 
 func get_actions() -> Array[GOAPAction]:
 	return [
-		GOAPActionEat.new(),
-		GOAPActionSleep.new(),
-		GOAPActionSocial.new(),
-		GOAPActionFun.new(),
-		GOAPActionWork.new()
+		GOAPActionEat.new(self),
+		GOAPActionSleep.new(self),
+		GOAPActionSocial.new(self),
+		GOAPActionFun.new(self),
+		GOAPActionWork.new(self)
 	]
 
 
