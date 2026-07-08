@@ -15,10 +15,12 @@ script = ExtResource("1_vgplq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1698692056]
 transform = Transform3D(4, 0, 0, 0, 3, 0, 0, 0, 4, 0, 0, 0)
+visible = false
 mesh = SubResource("BoxMesh_vgplq")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=2078137809]
 transform = Transform3D(4.5, 0, 0, 0, 1.5, 0, 0, 0, 4.5, 0, 2.2489028, 0)
+visible = false
 mesh = SubResource("PrismMesh_vgplq")
 
 [node name="ComponentNeedFulfiller" type="Node" parent="." unique_id=661336671]

@@ -12,6 +12,7 @@ script = ExtResource("1_m3iqj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=572523876]
 transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0)
+visible = false
 mesh = SubResource("BoxMesh_pkeux")
 
 [node name="ComponentNeedFulfiller" type="Node" parent="." unique_id=542740487]
