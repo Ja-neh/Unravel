@@ -31,6 +31,14 @@ func request_access(entity : Node3D, need : String) -> void:
 		var time = _component_need_fulfiller.get_time_to_complete_need(need)
 		_entities_in_building[entity] = time
 		entity.completing_action = true
+		
+		
+func in_area(entity : Node3D) -> bool:
+	for body in _area.get_overlapping_bodies():
+		if body == entity:
+			return true
+			
+	return false
 #endregion
 
 

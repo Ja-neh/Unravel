@@ -1,4 +1,4 @@
-extends Node3D
+extends CharacterBody3D
 class_name NPC
 
 @onready var _component_health = $ComponentHealth
@@ -11,8 +11,22 @@ class_name NPC
 var current_need : String
 var completing_action : bool = false
 
+@onready var nav_agent : NavigationAgent3D #add nav_agent
+var has_target : bool = false
+
 func _ready() -> void:
 	ManagerGame.register_entity(self)
+
+
+func _physics_process(delta):
+	if has_target:
+		var next_path_pos = nav_agent.get_next_path_position()
+		var dir = global_position.direction_to(next_path_pos)
+		velocity = dir * 3.0
+		
+		if nav_agent.is_navigation_finished():
+			has_target = false
+			velocity = Vector3.ZERO
 
 
 func get_actions() -> Array[GOAPAction]:
