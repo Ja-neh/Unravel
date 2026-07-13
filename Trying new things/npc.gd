@@ -12,7 +12,7 @@ class_name NPC
 var current_need : String
 var completing_action : bool = false
 
-@onready var nav_agent : NavigationAgent3D #add nav_agent
+@onready var nav_agent : NavigationAgent3D = $NavigationAgent3D
 var has_target : bool = false
 
 func _ready() -> void:
@@ -28,7 +28,8 @@ func _physics_process(delta):
 		if nav_agent.is_navigation_finished():
 			has_target = false
 			velocity = Vector3.ZERO
-
+			
+	move_and_slide()
 
 func get_actions() -> Array[GOAPAction]:
 	return [
