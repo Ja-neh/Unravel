@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 	pass
 	
 	
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	#Camera movement1
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
