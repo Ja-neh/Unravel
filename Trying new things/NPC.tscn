@@ -59,17 +59,17 @@ metadata/_custom_type_script = "uid://d4fjncpdd38yq"
 [node name="ComponentPrimaryNeeds" type="Node" parent="." unique_id=1655770581]
 script = ExtResource("3_62h32")
 _decay_rates = Dictionary[String, float]({
-"hunger": 1.0,
-"rest": 4.0
+"hunger": 0.5,
+"rest": 2.0
 })
 metadata/_custom_type_script = "uid://fwy1wul8wuam"
 
 [node name="ComponentSecondaryNeeds" type="Node" parent="." unique_id=538102951]
 script = ExtResource("4_dajtf")
 _decay_rates = Dictionary[String, float]({
-"fun": 2.0,
-"money": 4.0,
-"social": 2.0
+"fun": 1.0,
+"money": 2.0,
+"social": 1.0
 })
 metadata/_custom_type_script = "uid://ruvow1oaqjn0"
 
@@ -146,3 +146,6 @@ metadata/_custom_type_script = "uid://ckv4sl70oq7cr"
 [node name="GoapAgent" type="Node" parent="." unique_id=641598468]
 script = ExtResource("8_fov1g")
 metadata/_custom_type_script = "uid://c0fiwuklkwexp"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1480536646]
+debug_enabled = true

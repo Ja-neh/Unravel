@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://by88m2g2rdxag" path="res://EntityObject/Building.tscn" id="6_45d1s"]
 [ext_resource type="PackedScene" uid="uid://dhlcnuxja6awn" path="res://Trying new things/NPC.tscn" id="7_y7y61"]
 [ext_resource type="PackedScene" uid="uid://b6wcqtcj5qpxb" path="res://EntityObject/Field.tscn" id="8_q2d71"]
-[ext_resource type="PackedScene" uid="uid://d2sjpdxsuihja" path="res://EntityOrganism/Entity_Hero.tscn" id="8_uo7di"]
 [ext_resource type="PackedScene" uid="uid://i3301nlfi88j" path="res://Temp_scenes/NeedsDisplay.tscn" id="9_kn06e"]
 [ext_resource type="Script" uid="uid://vx45wvpbyly7" path="res://EntityObject/Scripts/Building.gd" id="9_uo7di"]
 
@@ -23,6 +22,10 @@ sky = SubResource("Sky_uo7di")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_uo7di"]
+vertices = PackedVector3Array(22.75, 1, -59, 27, 1, -63.25, 27, 1, -69.75, 7.25, 1, -44, 13.75, 1, -44, 29.25, 1, -70, 29.25, 1, -99.5, -99.5, 1, -99.5, -99.5, 1, -41.75, 7, 1, -41.75, 33, 1, -70, 33, 1, -99.5, 35.25, 1, -69.75, 99.5, 1, -64.5, 99.5, 1, -99.5, 35.25, 1, -64.75, 33.75, 4, -68.75, 34.25, 4, -63.75, 34.25, 4, -69, 28, 4, -69, 28, 4, -63.75, 28.5, 4, -64.25, 28.75, 4, -67.75, 28.75, 4, -68.75, 32.75, 4.25, -64.25, 32.75, 4.25, -67.75, 31.333328, 5.25, -64.25, 31.416672, 5.25, -67.75, 30.475006, 5.25, -65.525, 33, 1, -67.75, 29.25, 1, -67.75, 29.25, 1, -63.25, 33, 1, -63, 28.5, 1, -62.75, 33, 1, -43.5, 33.25, 1, -44, 34.25, 1, -62.75, 34.25, 1, -44, 29.5, 10, -67.5, 29.5, 10, -64.5, 32.5, 10, -64.5, 32.5, 10, -67.5, 35.25, 1, -63.25, 40, 1, -44, 40.25, 1, -42.25, 99.5, 1, -42.5, 27.25, 1, -62.75, 14.25, 1, -43.5, 14.25, 1, -43, 33, 1, -43, 8, 4, -36.75, 13.25, 4, -36.75, 8.25, 4, -37.25, 9.25, 4, -42.25, 12.75, 4, -42.5, 13.25, 4, -43, 8, 4, -43, 8.25, 4, -42.25, 9.25, 4.25, -38.25, 12.75, 4.25, -38.25, 9.25, 5.25, -39.583332, 12.75, 5.25, -39.666668, 13.75, 1, -41.75, 9.25, 1, -41.75, 9.25, 1, -38, 14, 1, -38, 33, 1, -36.75, 33.25, 1, -38, 33.25, 1, -41.75, 14.25, 1, -37, 38, 1, -38, 38, 1, -41.75, 39, 4, -37.25, 34, 4, -36.75, 39.25, 4, -36.75, 34.25, 4.25, -38.25, 37.75, 4.25, -38.25, 37.75, 4, -42.5, 34, 4, -43, 34.125, 5, -40.625, 34.1875, 5, -39.4375, 37.75, 5.25, -39.666668, 39, 4, -42.5, 39.25, 4, -43, 40.25, 1, -37.75, 99.5, 1, -37.5, -99.5, 1, -38, 7, 1, -38, 9.5, 10, -41.5, 9.5, 10, -38.5, 12.5, 10, -38.5, 12.5, 10, -41.5, 34.5, 10, -41.5, 34.5, 10, -38.5, 37.5, 10, -38.5, 37.5, 10, -41.5, 7, 1, -30.75, 9, 1, -31, 9, 1, -35.75, 7, 1, -36, -99.5, 1, -28.75, 7, 1, -28.75, 39.75, 1, -35.75, 38, 1, -35.75, 38.25, 1, -31, 40, 1, -31, 40.25, 1, -36.25, 40.25, 1, -29.25, 99.5, 1, -29.5, 33.25, 1, -31, 33.25, 1, -35.75, 33, 1, -30, 13.75, 1, -35.75, 14.25, 1, -30, 14, 1, -31, 8, 4, -23.75, 13.25, 4, -23.75, 8.25, 4, -24.25, 9.25, 4, -29.25, 12.75, 4, -29.5, 13.25, 4, -30, 8, 4, -30, 8.25, 4, -29.25, 9.25, 4.25, -25.25, 12.75, 4.25, -25.25, 9.25, 5.25, -26.583336, 12.75, 5.25, -26.666664, 13.75, 1, -28.75, 9.25, 1, -28.75, 9.25, 1, -25, 14, 1, -25, 33, 1, -23.75, 33.25, 1, -25, 33.25, 1, -28.75, 14.25, 1, -24, 38, 1, -25, 38, 1, -28.75, 39, 4, -24.25, 34, 4, -23.75, 39.25, 4, -23.75, 34.25, 4.25, -25.25, 37.75, 4.25, -25.25, 37.75, 4, -29.5, 34, 4, -30, 34.125, 5, -27.625, 34.1875, 5, -26.4375, 37.75, 5.25, -26.666664, 39, 4, -29.5, 39.25, 4, -30, 40.25, 1, -24.75, 99.5, 1, -24.5, -99.5, 1, -25, 7, 1, -25, 9.5, 10, -28.5, 9.5, 10, -25.5, 12.5, 10, -25.5, 12.5, 10, -28.5, 34.5, 10, -28.5, 34.5, 10, -25.5, 37.5, 10, -25.5, 37.5, 10, -28.5, 7, 1, -23, 8.75, 1, -22.75, -99.5, 1, 99.5, 8.5, 1, 99.5, 40.25, 1, -23.25, 39.75, 1, -22.75, 34.5, 1, 99.5, 99.5, 1, 99.5, 34.75, 1, -22.75, 33.25, 1, -22.75, 13.75, 1, -22.75, 12.5, 1, 99.5, 12.25, 1, -22.75)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(6, 5, 2), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 6), PackedInt32Array(6, 3, 8), PackedInt32Array(6, 8, 7), PackedInt32Array(8, 3, 9), PackedInt32Array(6, 11, 5), PackedInt32Array(5, 11, 10), PackedInt32Array(10, 11, 12), PackedInt32Array(12, 11, 14), PackedInt32Array(12, 14, 13), PackedInt32Array(13, 15, 12), PackedInt32Array(18, 17, 16), PackedInt32Array(23, 22, 19), PackedInt32Array(19, 22, 21), PackedInt32Array(19, 21, 20), PackedInt32Array(22, 28, 21), PackedInt32Array(21, 28, 26), PackedInt32Array(26, 28, 24), PackedInt32Array(24, 28, 25), PackedInt32Array(25, 28, 27), PackedInt32Array(27, 28, 22), PackedInt32Array(16, 23, 18), PackedInt32Array(18, 23, 19), PackedInt32Array(30, 29, 31), PackedInt32Array(31, 29, 32), PackedInt32Array(31, 32, 33), PackedInt32Array(33, 32, 36), PackedInt32Array(33, 36, 35), PackedInt32Array(33, 35, 34), PackedInt32Array(36, 37, 35), PackedInt32Array(41, 40, 38), PackedInt32Array(38, 40, 39), PackedInt32Array(36, 42, 37), PackedInt32Array(37, 42, 43), PackedInt32Array(45, 44, 43), PackedInt32Array(42, 15, 43), PackedInt32Array(43, 15, 13), PackedInt32Array(43, 13, 45), PackedInt32Array(0, 1, 46), PackedInt32Array(0, 46, 33), PackedInt32Array(47, 0, 48), PackedInt32Array(48, 0, 33), PackedInt32Array(48, 33, 34), PackedInt32Array(48, 34, 49), PackedInt32Array(0, 47, 4), PackedInt32Array(52, 51, 50), PackedInt32Array(57, 56, 53), PackedInt32Array(53, 56, 54), PackedInt32Array(54, 56, 55), PackedInt32Array(58, 60, 59), PackedInt32Array(59, 60, 61), PackedInt32Array(61, 60, 53), PackedInt32Array(61, 53, 54), PackedInt32Array(52, 50, 57), PackedInt32Array(57, 50, 56), PackedInt32Array(63, 62, 64), PackedInt32Array(64, 62, 65), PackedInt32Array(68, 67, 66), PackedInt32Array(62, 69, 65), PackedInt32Array(62, 48, 69), PackedInt32Array(69, 48, 49), PackedInt32Array(69, 49, 68), PackedInt32Array(69, 68, 66), PackedInt32Array(68, 71, 67), PackedInt32Array(67, 71, 70), PackedInt32Array(74, 73, 72), PackedInt32Array(75, 80, 76), PackedInt32Array(76, 80, 81), PackedInt32Array(81, 80, 79), PackedInt32Array(81, 79, 77), PackedInt32Array(77, 79, 78), PackedInt32Array(82, 83, 72), PackedInt32Array(72, 83, 74), PackedInt32Array(82, 77, 83), PackedInt32Array(83, 77, 78), PackedInt32Array(44, 45, 84), PackedInt32Array(84, 45, 85), PackedInt32Array(8, 9, 86), PackedInt32Array(86, 9, 87), PackedInt32Array(91, 90, 88), PackedInt32Array(88, 90, 89), PackedInt32Array(95, 94, 92), PackedInt32Array(92, 94, 93), PackedInt32Array(97, 96, 98), PackedInt32Array(98, 96, 99), PackedInt32Array(99, 96, 100), PackedInt32Array(99, 100, 86), PackedInt32Array(86, 87, 99), PackedInt32Array(96, 101, 100), PackedInt32Array(105, 104, 102), PackedInt32Array(102, 104, 103), PackedInt32Array(106, 84, 85), PackedInt32Array(102, 106, 105), PackedInt32Array(105, 106, 107), PackedInt32Array(107, 106, 108), PackedInt32Array(108, 106, 85), PackedInt32Array(110, 103, 109), PackedInt32Array(109, 103, 104), PackedInt32Array(110, 111, 66), PackedInt32Array(66, 111, 113), PackedInt32Array(66, 113, 112), PackedInt32Array(66, 112, 69), PackedInt32Array(110, 109, 111), PackedInt32Array(98, 112, 97), PackedInt32Array(97, 112, 114), PackedInt32Array(112, 113, 114), PackedInt32Array(117, 116, 115), PackedInt32Array(122, 121, 118), PackedInt32Array(118, 121, 119), PackedInt32Array(119, 121, 120), PackedInt32Array(123, 125, 124), PackedInt32Array(124, 125, 126), PackedInt32Array(126, 125, 118), PackedInt32Array(126, 118, 119), PackedInt32Array(117, 115, 122), PackedInt32Array(122, 115, 121), PackedInt32Array(128, 127, 129), PackedInt32Array(129, 127, 130), PackedInt32Array(133, 132, 131), PackedInt32Array(127, 134, 130), PackedInt32Array(127, 113, 134), PackedInt32Array(134, 113, 111), PackedInt32Array(134, 111, 133), PackedInt32Array(134, 133, 131), PackedInt32Array(133, 136, 132), PackedInt32Array(132, 136, 135), PackedInt32Array(139, 138, 137), PackedInt32Array(140, 145, 141), PackedInt32Array(141, 145, 146), PackedInt32Array(146, 145, 144), PackedInt32Array(146, 144, 142), PackedInt32Array(142, 144, 143), PackedInt32Array(147, 148, 137), PackedInt32Array(137, 148, 139), PackedInt32Array(147, 142, 148), PackedInt32Array(148, 142, 143), PackedInt32Array(107, 108, 149), PackedInt32Array(149, 108, 150), PackedInt32Array(100, 101, 151), PackedInt32Array(151, 101, 152), PackedInt32Array(156, 155, 153), PackedInt32Array(153, 155, 154), PackedInt32Array(160, 159, 157), PackedInt32Array(157, 159, 158), PackedInt32Array(151, 152, 161), PackedInt32Array(161, 162, 151), PackedInt32Array(151, 162, 164), PackedInt32Array(151, 164, 163), PackedInt32Array(165, 149, 150), PackedInt32Array(165, 150, 166), PackedInt32Array(166, 150, 168), PackedInt32Array(166, 168, 167), PackedInt32Array(167, 169, 166), PackedInt32Array(131, 170, 134), PackedInt32Array(134, 170, 171), PackedInt32Array(171, 170, 167), PackedInt32Array(171, 167, 172), PackedInt32Array(172, 173, 171), PackedInt32Array(170, 169, 167), PackedInt32Array(162, 173, 164), PackedInt32Array(164, 173, 172)]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ti1bm"]
 albedo_texture = ExtResource("2_p70al")
 
@@ -36,79 +39,13 @@ environment = SubResource("Environment_kn06e")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 127, 0)
 shadow_enabled = true
 
-[node name="Desert" type="CSGBox3D" parent="." unique_id=2118615767]
-use_collision = true
-size = Vector3(200, 1, 200)
-material = SubResource("StandardMaterial3D_ti1bm")
-
 [node name="Node3D2" parent="." unique_id=1023616631 instance=ExtResource("4_gjpho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 1)
 
-[node name="House" parent="." unique_id=1799062606 instance=ExtResource("6_45d1s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 2, -66)
-
-[node name="ComponentNeedFulfiller" parent="House" index="2" unique_id=661336671]
-_fulfilled_needs = Dictionary[String, int]({
-"rest": 100
-})
-_times_to_complete = Dictionary[String, int]({
-"rest": 8
-})
-
-[node name="Saloon" parent="." unique_id=300134746 instance=ExtResource("6_45d1s")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 36, 2, -40)
-
-[node name="ComponentNeedFulfiller" parent="Saloon" index="2" unique_id=661336671]
-_fulfilled_needs = Dictionary[String, int]({
-"hunger": 100
-})
-_times_to_complete = Dictionary[String, int]({
-"hunger": 1
-})
-
-[node name="Work" parent="." unique_id=200994670 instance=ExtResource("6_45d1s")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 36, 2, -27)
-
-[node name="ComponentNeedFulfiller" parent="Work" index="2" unique_id=661336671]
-_fulfilled_needs = Dictionary[String, int]({
-"money": 35
-})
-_times_to_complete = Dictionary[String, int]({
-"money": 4
-})
-
-[node name="Social" parent="." unique_id=1508187048 instance=ExtResource("6_45d1s")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 11, 2, -27)
-
-[node name="MeshInstance3D2" parent="Social" index="1" unique_id=2078137809]
-transform = Transform3D(4.4999995, 0, 1.4210855e-14, 0, 1.4999999, 0, -1.4210855e-14, 0, 4.4999995, 0, 2.2489028, 0)
-
-[node name="ComponentNeedFulfiller" parent="Social" index="2" unique_id=661336671]
-_fulfilled_needs = Dictionary[String, int]({
-"social": 100
-})
-_times_to_complete = Dictionary[String, int]({
-"social": 1
-})
-
-[node name="Tarven" parent="." unique_id=2071567860 instance=ExtResource("6_45d1s")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 11, 2, -40)
-
-[node name="ComponentNeedFulfiller" parent="Tarven" index="2" unique_id=661336671]
-_fulfilled_needs = Dictionary[String, int]({
-"fun": 100
-})
-_times_to_complete = Dictionary[String, int]({
-"fun": 2
-})
-
 [node name="Control" parent="." unique_id=1912747829 instance=ExtResource("9_kn06e")]
 
-[node name="EntityHero" parent="." unique_id=398184550 instance=ExtResource("8_uo7di")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
 [node name="Npc" parent="." unique_id=1739506664 instance=ExtResource("7_y7y61")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5482471, -5)
 
 [node name="OpenField" parent="." unique_id=820024664 instance=ExtResource("8_q2d71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 2, 50)
@@ -153,11 +90,77 @@ _times_to_complete = Dictionary[String, int]({
 transform = Transform3D(0.563526, -0.5841397, 0.5841397, 0, 0.70710677, 0.70710677, -0.82609826, -0.39847308, 0.39847308, 75.387825, 80.55834, 57.16311)
 current = true
 
-[editable path="House"]
-[editable path="Saloon"]
-[editable path="Work"]
-[editable path="Social"]
-[editable path="Tarven"]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1783308055]
+navigation_mesh = SubResource("NavigationMesh_uo7di")
+
+[node name="House" parent="NavigationRegion3D" unique_id=1799062606 instance=ExtResource("6_45d1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 2, -66)
+
+[node name="ComponentNeedFulfiller" parent="NavigationRegion3D/House" index="5" unique_id=661336671]
+_fulfilled_needs = Dictionary[String, int]({
+"rest": 100
+})
+_times_to_complete = Dictionary[String, int]({
+"rest": 8
+})
+
+[node name="Saloon" parent="NavigationRegion3D" unique_id=300134746 instance=ExtResource("6_45d1s")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 36, 2, -40)
+
+[node name="ComponentNeedFulfiller" parent="NavigationRegion3D/Saloon" index="5" unique_id=661336671]
+_fulfilled_needs = Dictionary[String, int]({
+"hunger": 100
+})
+_times_to_complete = Dictionary[String, int]({
+"hunger": 1
+})
+
+[node name="Work" parent="NavigationRegion3D" unique_id=200994670 instance=ExtResource("6_45d1s")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 36, 2, -27)
+
+[node name="ComponentNeedFulfiller" parent="NavigationRegion3D/Work" index="5" unique_id=661336671]
+_fulfilled_needs = Dictionary[String, int]({
+"money": 35
+})
+_times_to_complete = Dictionary[String, int]({
+"money": 4
+})
+
+[node name="Social" parent="NavigationRegion3D" unique_id=1508187048 instance=ExtResource("6_45d1s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 11, 2, -27)
+
+[node name="MeshInstance3D2" parent="NavigationRegion3D/Social" index="1" unique_id=2078137809]
+transform = Transform3D(4.4999995, 0, 1.4210855e-14, 0, 1.4999999, 0, -1.4210855e-14, 0, 4.4999995, 0, 2.2489028, 0)
+
+[node name="ComponentNeedFulfiller" parent="NavigationRegion3D/Social" index="5" unique_id=661336671]
+_fulfilled_needs = Dictionary[String, int]({
+"social": 100
+})
+_times_to_complete = Dictionary[String, int]({
+"social": 1
+})
+
+[node name="Tarven" parent="NavigationRegion3D" unique_id=2071567860 instance=ExtResource("6_45d1s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 11, 2, -40)
+
+[node name="ComponentNeedFulfiller" parent="NavigationRegion3D/Tarven" index="5" unique_id=661336671]
+_fulfilled_needs = Dictionary[String, int]({
+"fun": 100
+})
+_times_to_complete = Dictionary[String, int]({
+"fun": 2
+})
+
+[node name="Desert" type="CSGBox3D" parent="NavigationRegion3D" unique_id=2118615767]
+use_collision = true
+size = Vector3(200, 1, 200)
+material = SubResource("StandardMaterial3D_ti1bm")
+
 [editable path="OpenField"]
 [editable path="HostileField"]
 [editable path="FruitTreesField"]
+[editable path="NavigationRegion3D/House"]
+[editable path="NavigationRegion3D/Saloon"]
+[editable path="NavigationRegion3D/Work"]
+[editable path="NavigationRegion3D/Social"]
+[editable path="NavigationRegion3D/Tarven"]

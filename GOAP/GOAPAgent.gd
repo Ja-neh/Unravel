@@ -8,8 +8,6 @@ var _action_planner: GOAPActionPlanner = GOAPActionPlanner.new()
 var _actions: Array[GOAPAction] = []
 var _entity: Node3D
 
-#var _is_executing: bool = false
-
 
 func _ready() -> void:
 	_entity = get_parent()
@@ -42,11 +40,8 @@ func _goal_changed(new_goal: GOAPGoal) -> bool:
 func _follow_plan() -> void:
 	# If no plan, stop
 	if _current_plan.is_empty():
+		_current_plan_step = 0
 		return
-	
-	# If we're in the middle of executing, wait
-	#if _is_executing:
-		#return
 	
 	# Check if plan is complete
 	if _current_plan_step >= _current_plan.size():
@@ -60,7 +55,6 @@ func _follow_plan() -> void:
 
 
 func _execute_action(action: GOAPAction) -> void:
-	#_is_executing = true
 	
 	# Get current state from entity
 	var state = _entity.get_blackboard() if _entity.has_method("get_blackboard") else {}
@@ -68,17 +62,15 @@ func _execute_action(action: GOAPAction) -> void:
 	# Check if preconditions are still met
 	if not action.are_pre_conditions_met(state):
 		# Re-plan immediately
-		#_is_executing = false
+		_current_plan = []
 		_current_plan = _action_planner.get_plan(_current_goal, state, _actions)
 		_current_plan_step = 0
 		return
 	
 	# Execute the action
-	action.execute_real()
-	
-	# Mark as complete (building will set completing_action = false)
-	#_is_executing = false
-	_current_plan_step += 1
+	if action.execute_real():
+		# Mark as complete (building will set completing_action = false)
+		_current_plan_step += 1
 
 
 func is_planning_complete() -> bool:

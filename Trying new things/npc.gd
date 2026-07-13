@@ -8,6 +8,7 @@ class_name NPC
 @onready var _utility_decision_secondary: UtilityDecision = $UtilityDecisionSecondary
 @export var _goap_agent: GOAPAgent
 
+
 var current_need : String
 var completing_action : bool = false
 

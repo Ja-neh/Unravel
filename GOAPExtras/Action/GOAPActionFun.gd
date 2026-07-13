@@ -62,10 +62,17 @@ func _evaluate_fulfiller(fulfiller: Node3D) -> float:
 	return fulfiller_cost
 
 
-func execute_real() -> void:
+func execute_real() -> bool:
 	if saved_fulfiller:
-		_entity.global_position = saved_fulfiller.global_position
-		saved_fulfiller.request_access(_entity, identifier)
+		var _entity_nav_agent : NavigationAgent3D = _entity.nav_agent
+		_entity_nav_agent.target_position = saved_fulfiller.global_position
+		_entity.has_target = true
+		
+		if saved_fulfiller.in_area(_entity):
+			saved_fulfiller.request_access(_entity, identifier)
+			return true
+			
+	return false
 
 
 func add_effects(fulfiller : Node3D) -> void:

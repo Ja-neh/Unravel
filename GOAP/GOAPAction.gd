@@ -51,5 +51,6 @@ func execute(state : Dictionary) -> Dictionary:
 	return new_state
 
 
-func execute_real() -> void:
+func execute_real() -> bool:
 	print("WARNING : Called from base class")
+	return true
