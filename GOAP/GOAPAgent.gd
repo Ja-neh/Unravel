@@ -64,7 +64,7 @@ func _execute_action(action: GOAPAction) -> void:
 		# Re-plan immediately
 		_current_plan = []
 		_current_plan = _action_planner.get_plan(_current_goal, state, _actions)
-		_current_plan_step = 0
+		_current_plan_step = 0 
 		return
 	
 	# Execute the action
